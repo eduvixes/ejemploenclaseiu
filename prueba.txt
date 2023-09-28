@@ -1,0 +1,6 @@
+total 17
+drwxr-xr-x 1 jriglesias_esei.uvig 197121  0 Sep 28 11:48 ./
+drwxr-xr-x 1 jriglesias_esei.uvig 197121  0 Sep 28 11:47 ../
+drwxr-xr-x 1 jriglesias_esei.uvig 197121  0 Sep 28 11:46 .git/
+-rw-r--r-- 1 jriglesias_esei.uvig 197121 74 Sep 28 11:46 README.md
+-rw-r--r-- 1 jriglesias_esei.uvig 197121  0 Sep 28 11:48 prueba.txt
