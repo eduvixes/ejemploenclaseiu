@@ -16,7 +16,13 @@ Array(
     Array(4,'usuario',5,'jrodeiro',true)
 )
 
+function evaluarficheros(){
 
+    testdef(test_definiciones);
+    probedef(pruebasunitarias);
+    probeintest(test_definiciones);
+
+}
 function testdef(test_def){
 
 
@@ -41,7 +47,7 @@ function testdef(test_def){
     });
 
     if (filacorrecta){
-        document.getElementById('texto').innerHTML = 'formato correcto en deficiones test';
+        document.getElementById('resultadodef').innerHTML = 'formato correcto en deficiones test';
     }
 
 }
