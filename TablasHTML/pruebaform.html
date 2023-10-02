@@ -1,0 +1,49 @@
+</!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="./tonteria.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon" />
+	<title>Javi</title>
+	<script type="text/javascript" src="./funcionesComunes.js"></script>
+	<script type="text/javascript" src="./funcionesFormulario.js"></script>
+</head>
+<body onload="inicializa_pagina();">
+	<div id="div_titulo_pagina" class="formato_titulo_pagina">
+		<p onclick="saludar();">pagina de prueba practica 2 iu</p>
+	</div>
+	<div id="div_mensajes_pagina" class="formato_mensajes_pagina">
+		<p id="texto_mensaje"></p>
+		<p onclick="cerrar_div_mensajes();">Cerrar</p>
+	</div>
+    <div id="id_tabla_datos">
+        
+    </div>
+	<div id="id_div_pruebaform">
+		<form id="pruebaform" name="name_pruebaform" action="http://193.147.87.202/procesaform.php" method="POST" enctype="multipart/form-data" onsubmit = "return comprobar_pruebaform();">
+
+			<a id='label1'>Selecciona fichero : </a>
+			<input id="id_fichero" type="file" name="fichero" onchange ="comprobar_fichero('id_fichero');comprobar_fichero_vacio('id_fichero');">
+			<a id="status_fichero"></a>
+			<br>
+			Selecciona otro fichero : 
+			<input id="id_fichero1" type="file" name="fichero1" onchange="comprobar_fichero('id_fichero1');comprobar_fichero_vacio('id_fichero1');">
+			<a id="status_fichero1"></a>
+			<br>
+			Dime tu año de nacimiento : 
+			<input id = "id_birthday" type="text" name="birthday" onblur="comprobar_birthday();"><br>
+			Send these files:<br>
+			<input name="userfile[]" type="file"><br>
+			<input name="userfile[]" type="file"><br>
+			<select name="provincias" id="provincias" multiple>
+				<option value="coruña">coruña</option>
+			</select>
+
+
+			<input type="submit" name="submit_pruebaform" value="enviar">
+
+		</form>
+	</div>
+</body>
+</html>
