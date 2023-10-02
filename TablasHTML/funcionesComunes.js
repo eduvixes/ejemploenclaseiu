@@ -1,6 +1,7 @@
 function inicializa_pagina(){
     cerrar_div_mensajes();
     cerrar_div_formulario();
+    mostrartabla('alumnos',resConsultaAlumnos, AtributosShowAlumnos);
 }
 
 function cerrar_div_mensajes(){
