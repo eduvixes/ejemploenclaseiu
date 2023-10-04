@@ -18,33 +18,63 @@ Array(
 
 function evaluarficheros(){
 
+    let nombrealumno = "JavierRodeiroIglesias";
+    let variablealumno = "ET1_"+nombrealumno;
+    let javi = "pruebascript.js";
+    //let nombrevariable = "javi";
+    //alert(eval(nombrevariable));
+   
+    //fetch('pruebascript.js').then(res => {
+    //    document.getElementById('cargascripts').innerHTML = res; 
+    //});
+    
+    $('#cargascripts').load(javi);
+    //$('#cargascripts').load('pruebascript.js');
+
+    setTimeout(10000);
+
+    generaldef(ET1_JavierRodeiroIglesias);
+
     testdef(test_definiciones);
     probedef(pruebasunitarias);
     probeintest(test_definiciones);
 
 }
+
+function generaldef(general_def){
+    general_def.forEach(element => {
+        alert(element);
+    });
+}
+
 function testdef(test_def){
 
-
+    salidatabla = "";
     test_def.forEach(element => {
+        salidalinea = "<tr>";
         filacorrecta = true;
         for (let i=0;i<5;i++){
-            console.log(typeof(element[i]));
+            salidalinea += '<td>'+typeof(element[i])+'</td>';
         }
         if (
-            (typeof(element[0]=='string'))  &&
-            (typeof(element[1]=='number'))  &&
-            (typeof(element[2]=='string'))  &&
-            (typeof(element[3]=='boolean'))  &&
-            (typeof(element[4]=='string'))  
+            (typeof(element[0])=='string')  &&
+            (typeof(element[1])=='number')  &&
+            (typeof(element[2])=='string')  &&
+            (typeof(element[3])=='boolean')  &&
+            (typeof(element[4])=='string')  
             ){
-                
+                salidalinea += '<td>CORRECTA</td>';
             }
-            else
+        else
             {
+                salidalinea += '<td>ERROR</td>';
                 filacorrecta = false;
             }
+        salidalinea += "</tr>";
+        salidatabla += salidalinea;
     });
+
+    document.getElementById('tabla_def').innerHTML = salidatabla;
 
     if (filacorrecta){
         document.getElementById('resultadodef').innerHTML = 'formato correcto en deficiones test';
@@ -54,37 +84,52 @@ function testdef(test_def){
 
 function probedef(probe_def){
 
-
+    salidatabla = "";
     probe_def.forEach(element => {
+        salidalinea = "<tr>";
         filacorrecta = true;
         for (let i=0;i<5;i++){
-            console.log(typeof(element[i]));
+            salidalinea += '<td>'+typeof(element[i])+'</td>';
         }
         if (
-            (typeof(element[0]=='number'))  &&
-            (typeof(element[1]=='string'))  &&
-            (typeof(element[2]=='number'))  &&
-            (typeof(element[3]=='string'))  &&
-            (typeof(element[4]=='boolean')) 
-            ){}
-            else
+            (typeof(element[0])=='number')  &&
+            (typeof(element[1])=='string')  &&
+            (typeof(element[2])=='number')  &&
+            (typeof(element[3])=='string')  &&
+            (typeof(element[4])=='boolean') 
+            ){
+                salidalinea += '<td>CORRECTA</td>';
+            }
+        else
             {
+                salidalinea += '<td>ERROR</td>';
                 filacorrecta = false;
             }
+        salidalinea += "</tr>";
+        salidatabla += salidalinea;
     });
 
+    document.getElementById('tabla_prueba').innerHTML = salidatabla;
+
     if (filacorrecta){
-        document.getElementById('testpruebas').innerHTML = 'formato correcto en las pruebas de test';
+        document.getElementById('resultadoprueba').innerHTML = 'formato correcto en las pruebas de test';
     }
 
 }
 
 function probeintest(test_definiciones){
     
+    salidatabla = "";
     test_definiciones.forEach(element => {
         pruebaspordefinicion = buscarencolumna(pruebasunitarias, 0 ,element[1]);
-        console.log('definicion test número '+element[1]+' => '+pruebaspordefinicion);
+        if (pruebaspordefinicion < 2){
+            salidatabla += "<tr><td>La definición de test "+element[1]+" deberia tener al menos un caso de exito y uno de fracaso</td></tr>";
+        }
+        else{
+            salidatabla += "<tr><td>Definicion test número "+element[1]+" => "+pruebaspordefinicion+"</td></tr>";
+        }
     });
+    document.getElementById('tabla_pruebaentest').innerHTML = salidatabla;
 }
 
 function buscarencolumna(arraydedatos, columna, valor){
@@ -97,3 +142,4 @@ function buscarencolumna(arraydedatos, columna, valor){
     });
     return coincidencias;
 }
+
