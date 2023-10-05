@@ -7,3 +7,5 @@
     );
     
 </script>
+
+datosgenerales_JavierRodeiroIglesias = Array('','','');

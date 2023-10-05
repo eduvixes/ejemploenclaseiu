@@ -31,9 +31,7 @@ function evaluarficheros(){
     $('#cargascripts').load(javi);
     //$('#cargascripts').load('pruebascript.js');
 
-    setTimeout(10000);
-
-    generaldef(ET1_JavierRodeiroIglesias);
+    generaldef(datosgenerales_JavierRodeiroIglesias);
 
     testdef(test_definiciones);
     probedef(pruebasunitarias);
