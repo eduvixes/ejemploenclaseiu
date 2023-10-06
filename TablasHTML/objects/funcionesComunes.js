@@ -1,7 +1,6 @@
 function inicializa_pagina(){
     cerrar_div_mensajes();
     cerrar_div_formulario();
-    mostrartabla('personas',datospersonas, Array('dni','telefono_persona'));
 }
 
 function cerrar_div_mensajes(){

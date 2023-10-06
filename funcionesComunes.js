@@ -73,7 +73,8 @@ function crear_estructura_body(){
 
     
     let listaeventos = {'onchange':'comprobar_fichero(/"id_fichero1/");comprobar_fichero_vacio(/"id_fichero1/");'};
-    let campofile2 = crearInput('file', 'id_fichero1', 'fichero1', listaeventos, Array, '');
+    let listaclases = Array('clase1','clase2','clase3');
+    let campofile2 = crearInput('file', 'id_fichero1', 'fichero1', listaeventos, listaclases, '');
     formbase.appendChild(campofile2);
 
     let saltolinea1 = document.createElement('br');
@@ -83,7 +84,7 @@ function crear_estructura_body(){
     formbase.appendChild(texto2);
 
     listaeventos = {'onblur':'comprobar_birthday()'};
-    let campotext1 = crearInput('text','id_birthday','birthday',listaeventos, Array, '');
+    let campotext1 = crearInput('text','id_birthday','birthday',listaeventos, Array(), '');
     formbase.appendChild(campotext1);
     
     let saltolinea2 = document.createElement('br');
@@ -95,13 +96,13 @@ function crear_estructura_body(){
     let saltolinea3 = document.createElement('br');
     formbase.appendChild(saltolinea3);
 
-    let campofile3 = crearInput('file', '', 'userFile[]', Array, Array, '');
+    let campofile3 = crearInput('file', '', 'userFile[]', Array, Array(), '');
     formbase.appendChild(campofile3);
 
     let saltolinea4 = document.createElement('br');
     formbase.appendChild(saltolinea4);
 
-    let campofile4 = crearInput('file', '', 'userFile[]', Array, Array, '');
+    let campofile4 = crearInput('file', '', 'userFile[]', Array, Array(), '');
     formbase.appendChild(campofile4);
 
     let saltolinea5 = document.createElement('br');
@@ -119,7 +120,10 @@ function crear_estructura_body(){
 function crearInput(type, id, name, listaeventos, listaclases, valor){
     miinput = document.createElement('input');
     miinput.type = type;
-    miinput.id = id;
+    if (miinput.id == ''){}
+    else{
+        miinput.id = id;
+    }
     miinput.name = name;
     miinput.value = valor;
 
@@ -133,7 +137,7 @@ function crearInput(type, id, name, listaeventos, listaclases, valor){
         for (let i=0;i<listaclases.length;i++){
             misclases = misclases + listaclases[i] + ' ';
         }
-
+        misclases = misclases.substring(0, misclases.length - 1);
         miinput.className = misclases;
     }
     return miinput;
