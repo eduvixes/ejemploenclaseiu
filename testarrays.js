@@ -21,21 +21,20 @@ function evaluarficheros(){
     let nombrealumno = "JavierRodeiroIglesias";
     let variablealumno = "ET1_"+nombrealumno;
     let javi = "pruebascript.js";
-    //let nombrevariable = "javi";
-    //alert(eval(nombrevariable));
-   
-    //fetch('pruebascript.js').then(res => {
-    //    document.getElementById('cargascripts').innerHTML = res; 
-    //});
-    
-    $('#cargascripts').load(javi);
-    //$('#cargascripts').load('pruebascript.js');
+        
+    var result = $('#cargascripts').load(javi, function () {
+        
+        generaldef(datosgenerales_JavierRodeiroIglesias);
 
-    generaldef(datosgenerales_JavierRodeiroIglesias);
+    
+    }); 
+    //$('#cargascripts').load(javi);
+    //$('#cargascripts').load('pruebascript.js');
 
     testdef(test_definiciones);
     probedef(pruebasunitarias);
     probeintest(test_definiciones);
+    
 
 }
 
@@ -43,6 +42,7 @@ function generaldef(general_def){
     general_def.forEach(element => {
         alert(element);
     });
+    console.log(general_def);
 }
 
 function testdef(test_def){
