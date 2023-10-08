@@ -97,6 +97,8 @@ function comprobar_ficheros_variables {
             # Muestra el nombre del alumno
             echo "Nombre del Alumno: $studentname"
 
+            # Añadir nombre de directorio, fichero y usuario
+
             echo "Búsqueda de ficheros :"
 
             comprobar__existe_fichero "ET1_""$studentname"".js" "$subdir" ]
@@ -108,6 +110,9 @@ function comprobar_ficheros_variables {
             buscar_variable_en_fichero "datosgenerales_""$studentname" "$subdir/""ET1_""$studentname"".js"
             buscar_variable_en_fichero "def_test_""$studentname" "$subdir/""ET1_""$studentname""_tests.js"
             buscar_variable_en_fichero "pruebasunitarias_""$studentname" "$subdir/""ET1_""$studentname""_tests.js"
+
+            info_estudiantes="'$studentname',"
+            echo $info_estudiantes >> "ficheroalumnos.js"
 
             echo "--------------------------------------------------------------------------------"
 
@@ -128,6 +133,14 @@ function comprobar_todos_los_alumnos {
 
     # Comprueba si el directorio existe
     if [ -d "$dir/" ]; then
+
+    # Crea fichero de información de alumnos
+    empiezafichero="<script type='text/javascript'>"
+    echo $empiezafichero >> "ficheroalumnos.js"
+    variablefichero="info_alumnos = Array("
+    echo $variablefichero >> "ficheroalumnos.js"
+    
+
     # Recorre los subdirectorios del directorio
         for subdir in "$dir"/*; do
             # Comprueba si el subdirectorio es un directorio
@@ -138,6 +151,11 @@ function comprobar_todos_los_alumnos {
         echo "El directorio $dir pasado por parametro no existe"
     fi
 
+    # termina el fichero
+    finvariable=");"
+    echo $finvariable >> "ficheroalumnos.js"
+    finfichero="</script>"
+    echo $finfichero >> "ficheroalumnos.js" 
 }
 
 

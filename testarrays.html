@@ -7,18 +7,29 @@
 	<title>test</title>
 	<script type="text/javascript" src="./testarrays.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <!-- incluir aqui los ficheros de la entrega 
-    <script type="text/javascript" src=".js"></script>
-    <script type="text/javascript" src=".js"></script>
-    <script type="text/javascript" src=".js"></script>
-    -->
 </head>
-<body onload="evaluarficheros();">
+<body onload="inicializar_validaciones();">
     
-    <div>
-        <p>1) Incluir como scripts en el head los tres ficheros de la entrega </p>
-        <p>2) Ir a la funcion evaluarficheros() y poner el nombre de las variables definidas en los ficheros</p>
+    <div id="intro">
+        <p>--------------------------------------------------------------------------------------------</p>
+        <p>OBJETIVO: INTENTAR QUE LOS FICHEROS DE DEFINICIÓN NO TENGAN ERRORES DE FORMATO              </p>
+        <p>SE SOLICITA EL NOMBRE DE USUARIO QUE SE ESTA USANDO EN LOS NOMBRES DE FICHERO               </p>
+        <p>COLOCAR EL DIRECTORIO A ENTREGAR EN EL MISMO DIRECTORIO DONDE ESTA PAGINA                   </p>
+        <p>DEBE EJECUTARSE EN UN SERVIDOR WEB PARA LA CARGA DINAMICA DE FICHEROS Y VARIABLES           </p>
+        <p>LOS FICHEROS DE LA ENTREGA DEBEN ESTAR EN UN SCRIPT JAVASCRIPT (MODIFICADO EN LA DEFINICION)</p>
+        <p>--------------------------------------------------------------------------------------------</p>
+        <label>Introduce el nombre de alumno usado en los ficheros</label>
+        <input id="nombrealumno" type="text" value='' />
+        <button onclick="evaluarficheros();">enviar</button>
+
+        <label>Introduce el directorio donde estan los ficheros</label>
+        <input id="directorio" type="text" value='' />
+        <button onclick="evaluarficherosAlumnos();">enviar</button>
+
     </div>
+
+    <div id="datosgenerales"></div>
+
     <div id="testdefiniciones">
         <h1>Resultado estructura definición tests</h1>
         <p id="resultadodef"></p>
@@ -27,6 +38,7 @@
 
             </table>
         </div>
+    </div>
 
     </div>
     <div id="testpruebas">
@@ -40,7 +52,7 @@
     </div>
 
     <div id="pruebasentest">
-        <h1>Resultado pruebas en test</h1>
+        <h1>Número de pruebas por test</h1>
         <p id="resultadopruebasentest"></p>
         <div id="div_tabla_pruebaentest">
             <table id="tabla_pruebaentest" border="1">
@@ -50,6 +62,10 @@
     </div>
 
     <div id="cargascripts">
+
+    </div>
+
+    <div id="cargaalumnos">
 
     </div>
 </body>

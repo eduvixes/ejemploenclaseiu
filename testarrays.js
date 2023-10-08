@@ -1,55 +1,134 @@
-test_definiciones = Array(
-    Array('usuario',1,'tamaño < 3',false, 'el tamaño no puede ser menor que 3'),
-    Array('usuario',2,'tamaño > 60',false, 'el tamaño no puede ser mayor que 60'),
-    Array('usuario',3,'no alfabético o con acentos o con ñ o con espacios',false,'Login de usuario contiene caracteres no permitidos (solo alfabéticos sin acentos)'),
-    Array('usuario',4,'alfabético sin acentos ni ñ ni espacios',true,'Exito')
+function inicializar_validaciones(){
+    document.getElementById('datosgenerales').style.display = 'none';
+    document.getElementById('testdefiniciones').style.display = 'none';
+    document.getElementById('testpruebas').style.display = 'none';
+    document.getElementById('pruebasentest').style.display = 'none';
+}
 
-) 
+var definiciondetests;
+var directorio;
 
-pruebasunitarias = 
-Array(
- //basicas de usuario
-    Array(1,'usuario',1,'jr',false),
-    Array(2,'usuario',2,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',false),
-    Array(3,'usuario',3,'j rodeiro',false),
-    Array(3,'usuario',4,'iñaki',false),
-    Array(4,'usuario',5,'jrodeiro',true)
-)
+function evaluarficherosAlumnos(){
 
+    directorio = 'ET1/Directorios/';
+
+    let listaalumnos = "./ET1/ficheroalumnos.js";
+        
+    let result = $('#cargascripts').load(listaalumnos, function () {
+
+        tratargeneral(info_alumnos[0]);
+        tratardefiniciontests(info_alumnos[0]);
+        tratarpruebastests(info_alumnos[0]);
+        comprobarpruebastests(info_alumnos[0]);
+
+    });
+    
+
+}
 function evaluarficheros(){
 
-    let nombrealumno = "JavierRodeiroIglesias";
-    let variablealumno = "ET1_"+nombrealumno;
-    let javi = "pruebascript.js";
-        
-    var result = $('#cargascripts').load(javi, function () {
-        
-        generaldef(datosgenerales_JavierRodeiroIglesias);
-
+    directorio = 'ET1/';
     
-    }); 
-    //$('#cargascripts').load(javi);
-    //$('#cargascripts').load('pruebascript.js');
+    let nombrealumno = document.getElementById('nombrealumno').value;
 
-    testdef(test_definiciones);
-    probedef(pruebasunitarias);
-    probeintest(test_definiciones);
-    
+    tratargeneral(nombrealumno);
+    tratardefiniciontests(nombrealumno);
+    tratarpruebastests(nombrealumno);
+    comprobarpruebastests(nombrealumno);
 
 }
 
-function generaldef(general_def){
-    general_def.forEach(element => {
-        alert(element);
+function ordenardefiniciontest(test_def){
+
+    let resultado = test_def.sort((a,b) => {
+     
+        if (a[0].toLowerCase() < b[0].toLowerCase()) {
+            return -1;
+            }
+        if (a[0].toLowerCase() > b[0].toLowerCase()) {
+            return 1;
+        }
+        if ((a[0].toLowerCase() == b[0].toLowerCase()) && (a[1] < b[1])) {
+            return -1
+        }
+        if ((a[0].toLowerCase() == b[0].toLowerCase()) && (a[1] > b[1])) {
+            return 1
+        }
+        return 0;
     });
-    console.log(general_def);
+
+    return resultado;
+
 }
+
+function creartablageneral(alumno,datosgenerales){
+
+    let htmltablageneral = "<div id='"+alumno+"'><h1>"+alumno+"</h1>";
+    
+    htmltablageneral += "<p> Entrega : "+datosgenerales[0]+"</p>";
+    htmltablageneral += "<p> Nombre : "+datosgenerales[1]+"</p>";
+    htmltablageneral += "<p> Horas Dedicadas : "+datosgenerales[2]+"</p>";
+
+    htmltablageneral += "</div>";
+    $("#datosgenerales").append(htmltablageneral);
+    document.getElementById('datosgenerales').style.display = 'block';
+
+}
+
+function tratardefiniciontests(alumno){
+    
+    let ficherodefiniciontestsalumno = directorio+'ET1_'+alumno+'/ET1_'+alumno+'_tests.js';
+        
+    let general = $('#cargaalumnos').load(ficherodefiniciontestsalumno, function () {
+        testdef(eval('def_test_'+alumno));
+    });
+
+}
+
+function tratarpruebastests(alumno){
+    
+    let ficherodefinicionpruebassalumno = directorio+'ET1_'+alumno+'/ET1_'+alumno+'_pruebas.js';
+        
+    let general = $('#cargaalumnos').load(ficherodefinicionpruebassalumno, function () {
+        probedef(eval('pruebasunitarias_'+alumno));
+    });
+
+}
+
+function comprobarpruebastests(alumno){
+    
+    let ficherodefinicionpruebassalumno = directorio+'ET1_'+alumno+'/ET1_'+alumno+'_pruebas.js';
+        
+    let general = $('#cargaalumnos').load(ficherodefinicionpruebassalumno, function () {
+        probeintest(eval('pruebasunitarias_'+alumno));
+    });
+
+}
+
+
+
+function tratargeneral(alumno){
+            
+    let ficherodatosgeneralesalumno = 'ET1/ET1_JavierRodeiroIglesias/ET1_'+alumno+'.js';
+        
+    let general = $('#cargaalumnos').load(ficherodatosgeneralesalumno, function () {
+        creartablageneral(alumno,eval('datosgenerales_'+alumno));
+    });
+
+
+}
+
+
 
 function testdef(test_def){
 
-    salidatabla = "";
+    salidatabla = "<tr><th>Campo</><th>CampoNum Def Test</th><th colspan='5'>Datos</th>";
+
+    definiciondetests = ordenardefiniciontest(test_def);
     test_def.forEach(element => {
         salidalinea = "<tr>";
+        salidalinea += '<td>'+element[0]+'</td>';
+        salidalinea += '<td>'+element[1]+'</td>';
         filacorrecta = true;
         for (let i=0;i<5;i++){
             salidalinea += '<td>'+typeof(element[i])+'</td>';
@@ -78,13 +157,20 @@ function testdef(test_def){
         document.getElementById('resultadodef').innerHTML = 'formato correcto en deficiones test';
     }
 
+    document.getElementById('testdefiniciones').style.display = 'block';
+
 }
+
 
 function probedef(probe_def){
 
-    salidatabla = "";
+    salidatabla = "<tr><th>Num Def Test</><th>Campo</th><th colspan='5'>Datos</th>";
+    let salidalinea = '';
+    
     probe_def.forEach(element => {
         salidalinea = "<tr>";
+        salidalinea += '<td>'+element[0]+'</td>';
+        salidalinea += '<td>'+element[1]+'</td>';
         filacorrecta = true;
         for (let i=0;i<5;i++){
             salidalinea += '<td>'+typeof(element[i])+'</td>';
@@ -113,28 +199,31 @@ function probedef(probe_def){
         document.getElementById('resultadoprueba').innerHTML = 'formato correcto en las pruebas de test';
     }
 
+    document.getElementById('testpruebas').style.display = 'block';
+
 }
 
-function probeintest(test_definiciones){
+function probeintest(pruebasdetests){
     
     salidatabla = "";
-    test_definiciones.forEach(element => {
-        pruebaspordefinicion = buscarencolumna(pruebasunitarias, 0 ,element[1]);
+    definiciondetests.forEach(element => {
+        pruebaspordefinicion = buscarencolumna(pruebasdetests, 0 ,element[1], element[0]);
         if (pruebaspordefinicion < 2){
-            salidatabla += "<tr><td>La definición de test "+element[1]+" deberia tener al menos un caso de exito y uno de fracaso</td></tr>";
+            salidatabla += "<tr><td>En el campo "+element[0]+" y test definido "+element[1]+" deberia tener al menos una prueba de exito y una de error</td></tr>";
         }
         else{
-            salidatabla += "<tr><td>Definicion test número "+element[1]+" => "+pruebaspordefinicion+"</td></tr>";
+            salidatabla += "<tr><td>En el campo "+element[0]+" para el test definido "+element[1]+" => existen "+pruebaspordefinicion+" pruebas</td></tr>";
         }
     });
     document.getElementById('tabla_pruebaentest').innerHTML = salidatabla;
+    document.getElementById('pruebasentest').style.display = 'block';
 }
 
-function buscarencolumna(arraydedatos, columna, valor){
+function buscarencolumna(arraydedatos, testdef, valortestdef, campo){
 
     let coincidencias = 0;
     arraydedatos.forEach(element => {
-        if (element[columna] == valor){
+        if ((element[testdef] == valortestdef) && (element[1] == campo)){
             coincidencias++;
         }
     });
