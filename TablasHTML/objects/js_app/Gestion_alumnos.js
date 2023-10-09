@@ -11,10 +11,12 @@ datosalumnos = Array(
     }
 );
 
-class GestionAlumnos extends GestionEntidad{
+class Gestion_alumnos extends GestionEntidad{
+
+    static createForm_EDIT(dniAlumno, repetidor, nombreAlumno){
+        alert('datos en alumnos'+dniAlumno);
+    }
 
 }
 
-function createForm_EDIT_alumnos(a,b,c){
-    console.log('por fin');
-}
+

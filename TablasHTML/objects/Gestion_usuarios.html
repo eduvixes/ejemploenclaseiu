@@ -5,11 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon" />
 	<title>Javi</title>
-	<script type="text/javascript" src="./funcionesComunes.js"></script>
-	<script type="text/javascript" src="./GestionEntidad.js"></script>
-	<script type="text/javascript" src="./GestionPersonas.js"></script>
+	<script type="text/javascript" src="./js_core/funcionesComunes.js"></script>
+	<script type="text/javascript" src="./js_base/Gestion_Entidad.js"></script>
+	<script type="text/javascript" src="./js_app/Gestion_usuarios.js"></script>
 </head>
-<body onload="inicializa_pagina();new GestionPersonas('personas',datospersonas,Array('dni','telefono_persona'));">
+<body onload="inicializa_pagina();let usuarios = new Gestion_usuarios('usuarios',datosusuarios,Array('dni','usuario','contrasena','id_rol')); usuarios.mostrartabla();">
 	<div id="div_titulo_pagina" class="formato_titulo_pagina">
 		<p id="id_texto_titulo_tabla" onclick="saludar();">pagina de prueba practica 2 iu</p>
 	</div>

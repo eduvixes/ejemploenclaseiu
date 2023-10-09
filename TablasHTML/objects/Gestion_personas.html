@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon" />
+	<title>Javi</title>
+	<script type="text/javascript" src="./js_core/funcionesComunes.js"></script>
+	<script type="text/javascript" src="./js_base/Gestion_Entidad.js"></script>
+	<script type="text/javascript" src="./js_app/Gestion_personas.js"></script>
+</head>
+<body onload="inicializa_pagina();personas = new Gestion_personas('personas',datospersonas,Array('dni','telefono_persona')); personas.mostrartabla();">
+	<div id="div_titulo_pagina" class="formato_titulo_pagina">
+		<p id="id_texto_titulo_tabla" onclick="saludar();">pagina de prueba practica 2 iu</p>
+	</div>
+	<div id="div_mensajes_pagina" class="formato_mensajes_pagina">
+		<p id="texto_mensaje"></p>
+		<p onclick="cerrar_div_mensajes();">Cerrar</p>
+	</div>
+    <div id="id_tabla_datos">
+        
+    </div>
+	<div id="id_div_pruebaform">
+		
+	</div>
+</body>
+</html>

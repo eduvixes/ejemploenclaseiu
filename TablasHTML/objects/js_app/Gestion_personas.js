@@ -211,6 +211,22 @@ datospersonas = Array(
     }
 );
 
-class GestionPersonas extends GestionEntidad{
+class Gestion_personas extends GestionEntidad{
+
+    static createForm_ADD(){
+        alert('add personas');
+    }
     
+    static createForm_EDIT(){
+        alert('edit personas');
+    }
+
+    static createForm_DELETE(){
+        alert('delete personas');
+    }
+
+    static createForm_SHOWCURRENT(){
+        alert('showcurrent personas');
+    }
+
 }

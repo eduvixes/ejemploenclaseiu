@@ -4,7 +4,6 @@ class GestionEntidad {
         this.entidad = entidad;
         this.datosfilas = datosfilas;
         this.columnasamostrar = columnasamostrar;
-        this.mostrartabla();
     }
 
     mostrarTitulos(){
@@ -79,7 +78,7 @@ class GestionEntidad {
     crearboton(accion, parametros){
         let columna = document.createElement('td');
         let opcion = document.createElement('a');
-        let textoonclick = "Gestion"+this.entidad+".createForm_"+accion+"("+parametros+");";
+        let textoonclick = "Gestion_"+this.entidad+".createForm_"+accion+"("+parametros+");";
         opcion.setAttribute('onclick',textoonclick);
         opcion.innerHTML = accion;
         columna.appendChild(opcion);
@@ -111,12 +110,22 @@ class GestionEntidad {
     
     }
 
-    static createForm_EDIT(id_usuario,nombre_usuario,password, id_rol){
-        alert('KAJDLFKAFJ');
+    static createForm_ADD(){
+        alert('falta create form ADD entidad heredada');
     }
 
-    mostrarMensaje(){
-        alert('mostrar mensaje');
+    createForm_EDIT(){
+        alert('falta create form EDIT entidad heredada');
     }
+
+    static createForm_DELETE(){
+        alert('falta create form DELETE entidad heredada');
+    }
+
+    static createForm_SHOWCURRENT(){
+        alert('falta create form SHOWCURRENT entidad heredada');
+    }
+
+    
 }
 

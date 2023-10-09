@@ -82,7 +82,7 @@ datosusuarios = Array(
 );
 
 
-class Gestionusuarios extends GestionEntidad{
+class Gestion_usuarios extends GestionEntidad{
 
     mostrarTitulos(){
 
@@ -164,7 +164,11 @@ class Gestionusuarios extends GestionEntidad{
     }
 
     static createForm_EDIT(id_usuario,nombre_usuario,id_rol){
-        alert('kkkkkkkkkkkkkkkkkkkkk');
+        alert('edit en usuarios');
+    }
+
+    static createForm_ASIGNAR_GRUPO(id_usuario,nombre_usuario,id_rol){
+        alert('ASIGNAR_GRUPO en usuarios');
     }
 
 }
