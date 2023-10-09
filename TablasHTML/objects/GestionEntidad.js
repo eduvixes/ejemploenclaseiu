@@ -79,7 +79,7 @@ class GestionEntidad {
     crearboton(accion, parametros){
         let columna = document.createElement('td');
         let opcion = document.createElement('a');
-        let textoonclick = "createForm_"+accion+"_"+this.entidad+"("+parametros+");";
+        let textoonclick = "Gestion"+this.entidad+".createForm_"+accion+"("+parametros+");";
         opcion.setAttribute('onclick',textoonclick);
         opcion.innerHTML = accion;
         columna.appendChild(opcion);
@@ -109,6 +109,14 @@ class GestionEntidad {
     
         tablaalumnos.appendChild(cuerpotabla);
     
+    }
+
+    static createForm_EDIT(id_usuario,nombre_usuario,password, id_rol){
+        alert('KAJDLFKAFJ');
+    }
+
+    mostrarMensaje(){
+        alert('mostrar mensaje');
     }
 }
 
