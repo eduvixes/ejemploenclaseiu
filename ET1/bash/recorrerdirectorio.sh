@@ -109,7 +109,7 @@ function comprobar_ficheros_variables {
 
             buscar_variable_en_fichero "datosgenerales_""$studentname" "$subdir/""ET1_""$studentname"".js"
             buscar_variable_en_fichero "def_test_""$studentname" "$subdir/""ET1_""$studentname""_tests.js"
-            buscar_variable_en_fichero "pruebasunitarias_""$studentname" "$subdir/""ET1_""$studentname""_tests.js"
+            buscar_variable_en_fichero "pruebasunitarias_""$studentname" "$subdir/""ET1_""$studentname""_pruebas.js"
 
             info_estudiantes="'$studentname',"
             echo $info_estudiantes >> "ficheroalumnos.js"

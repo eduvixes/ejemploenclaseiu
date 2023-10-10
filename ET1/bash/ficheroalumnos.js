@@ -4,3 +4,6 @@ info_alumnos = Array(
 'UnAlumnoCualquiera',
 );
 </script>
+'JavierRodeiroIglesias',
+'JavierRodeiroIglesias',
+'JavierRodeiroIglesias',
