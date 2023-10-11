@@ -213,17 +213,18 @@ datospersonas = Array(
 
 class Gestion_personas extends GestionEntidad{
 
-    ponerbotonesaddysearch(){
-        document.getElementById("botonADD").setAttribute('onclick','Gestion_personas.createForm_ADD()');
-        document.getElementById("botonSEARCH").setAttribute('onclick','Gestion_personas.createForm_SEARCH()');
-        document.getElementById("botonADD").innerText = 'ADD';
-        document.getElementById("botonSEARCH").innerText = 'SEARCH';
-    }
 
-    resetearformpersona() {
+    static resetearformpersona() {
 
         //poner en estado inicial el formulario otra vez
     
+    }
+
+    static rellenarbotonesaddysearch(entidad){
+        document.getElementById("botonADD").setAttribute('onclick','Gestion_'+entidad+'.createForm_ADD()');
+        document.getElementById("botonSEARCH").setAttribute('onclick','Gestion_'+entidad+'.createForm_SEARCH()');
+        document.getElementById("botonADD").innerText = 'ADD';
+        document.getElementById("botonSEARCH").innerText = 'SEARCH';
     }
 
     static createForm_ADD(){
@@ -231,45 +232,51 @@ class Gestion_personas extends GestionEntidad{
         // resetear el formulario
         this.resetearformpersona();
 
+        this.rellenarbotonesaddysearch('personas');
+
+        //this.rellenarbotonesaddysearch('personas');
+
         // se rellena el action del formulario
         document.getElementById('id_pruebaform').action = 'javascript:Gestion_personas.ADD();';
-        document.getElementById('id_pruebaform').onsubmit = add_persona;
+        document.getElementById('id_pruebaform').setAttribute('onsubmit', 'return Gestion_personas.comprobar_submit();');
 
         // se coloca el onblur del dni y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
-        document.getElementById('id_dni').onblur = comprobar_dni;
+        //document.getElementById('id_dni').onblur = comprobar_dni;
         document.getElementById('id_dni').value = '';
 
         // se coloca el onblur del nombre y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
-        document.getElementById('id_nombre_persona').onblur = comprobar_nombre;
+        //document.getElementById('id_nombre_persona').onblur = comprobar_nombre;
         document.getElementById('id_nombre_persona').value = '';
 
-        document.getElementById('id_apellidos_persona').onblur = comprobar_apellido;
+        //document.getElementById('id_apellidos_persona').onblur = comprobar_apellido;
         document.getElementById('id_apellidos_persona').value = '';
 
-        document.getElementById('id_fechanac').onchange = comprobar_fechanac;
+        //document.getElementById('id_fechanac').onchange = comprobar_fechanac;
         document.getElementById('id_fechaNacimiento_persona').value = '';
 
-        document.getElementById('id_direccion_persona').onblur = comprobar_direccion;
+        document.getElementById('id_direccion_persona').setAttribute('onblur','Gestion_personas.comprobar_direccion()');
         document.getElementById('id_direccion_persona').value = '';
 
-        document.getElementById('id_telefono_persona').onblur = comprobar_telefono;
+        //document.getElementById('id_telefono_persona').onblur = comprobar_telefono;
         document.getElementById('id_telefono_persona').value = '';
 
-        document.getElementById('id_email_persona').onblur = comprobar_email;
+        //document.getElementById('id_email_persona').onblur = comprobar_email;
         document.getElementById('id_email_persona').value = '';
 
-        document.getElementById('id_foto_persona').onblur = comprobar_foto;
+        //document.getElementById('id_foto_persona').onblur = comprobar_foto;
         document.getElementById('id_foto_persona').value = '';
 
        document.getElementById('id_submit').value = 'ADD';
 
         // para actualizar idioma despues de incluir la imagen
-        setLang();
+        //setLang();
 
         // se muestra el formulario
-        document.getElementById('id_pruebaform').style.display = 'block';
+        document.getElementById('id_div_pruebaform').style.display = 'block';
     }
-    
+
+    //-----------------------------------------------------------------------------
+    // formularios
     static createForm_EDIT(){
         alert('edit personas');
     }
@@ -280,6 +287,24 @@ class Gestion_personas extends GestionEntidad{
 
     static createForm_SHOWCURRENT(){
         alert('showcurrent personas');
+    }
+
+    //-----------------------------------------------------------------------------
+    // submits
+    static comprobar_submit(){
+        alert('paso por comprobar submit');
+        return true;
+    }
+
+    static ADD(){
+        alert ('llamada a back');
+    }
+
+    //-----------------------------------------------------------------------------
+    //validaciones campos
+    static comprobar_direccion(){
+        alert('validacion direccion');
+        return true;
     }
 
 }

@@ -6,6 +6,12 @@ class GestionEntidad {
         this.columnasamostrar = columnasamostrar;
     }
 
+
+    ponerbotonesaddysearch(){
+        let textodivbotones = '<div id="addysearch"><button id="botonADD">ADD</button><button id="botonSEARCH">SEARCH</button></div>';
+        document.getElementById('id_tabla_datos').insertAdjacentHTML('beforebegin',textodivbotones);
+    }
+
     mostrarTitulos(){
 
         this.ponerbotonesaddysearch();
@@ -116,7 +122,11 @@ class GestionEntidad {
         alert('falta create form ADD entidad heredada');
     }
 
-    createForm_EDIT(){
+    static createForm_SEARCH(){
+        alert('falta create form EDIT entidad heredada');
+    }
+
+    static createForm_EDIT(){
         alert('falta create form EDIT entidad heredada');
     }
 
