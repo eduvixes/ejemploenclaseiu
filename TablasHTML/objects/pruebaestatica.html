@@ -4,7 +4,8 @@
         <script type="text/javascript">
             class pruebaestatica{
                 constructor(){
-
+                    document.getElementById('botonprueba').setAttribute('onclick',"pruebaestatica.mostraralgo();")
+                    document.getElementById('botonprueba').innerText = "pulsa para pruebaestatica";
                 }
                 static mostraralgo(){
                     console.log('pruebaestatica');
@@ -18,9 +19,9 @@
             }
         </script>
     </head>
-    <body>
+    <body onload="new pruebaestatica();">
 
-        <a onclick="pruebaestatica.mostraralgo();">pulsa para pruebaestatica</a>
+        <button id='botonprueba'></button>
         <br>
         <br>
         <a onclick="hijopruebaestatica.mostraralgo();">pulsa para hijopruebaestatica</a>

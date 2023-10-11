@@ -220,19 +220,10 @@ class Gestion_personas extends GestionEntidad{
     
     }
 
-    static rellenarbotonesaddysearch(entidad){
-        document.getElementById("botonADD").setAttribute('onclick','Gestion_'+entidad+'.createForm_ADD()');
-        document.getElementById("botonSEARCH").setAttribute('onclick','Gestion_'+entidad+'.createForm_SEARCH()');
-        document.getElementById("botonADD").innerText = 'ADD';
-        document.getElementById("botonSEARCH").innerText = 'SEARCH';
-    }
-
     static createForm_ADD(){
 
         // resetear el formulario
         this.resetearformpersona();
-
-        this.rellenarbotonesaddysearch('personas');
 
         //this.rellenarbotonesaddysearch('personas');
 

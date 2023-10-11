@@ -10,6 +10,10 @@ class GestionEntidad {
     ponerbotonesaddysearch(){
         let textodivbotones = '<div id="addysearch"><button id="botonADD">ADD</button><button id="botonSEARCH">SEARCH</button></div>';
         document.getElementById('id_tabla_datos').insertAdjacentHTML('beforebegin',textodivbotones);
+        document.getElementById("botonADD").setAttribute('onclick','Gestion_'+this.entidad+'.createForm_ADD()');
+        document.getElementById("botonSEARCH").setAttribute('onclick','Gestion_'+this.entidad+'.createForm_SEARCH()');
+        document.getElementById("botonADD").innerText = 'ADD';
+        document.getElementById("botonSEARCH").innerText = 'SEARCH';
     }
 
     mostrarTitulos(){
@@ -85,7 +89,7 @@ class GestionEntidad {
 
     crearboton(accion, parametros){
         let columna = document.createElement('td');
-        let opcion = document.createElement('a');
+        let opcion = document.createElement('button');
         let textoonclick = "Gestion_"+this.entidad+".createForm_"+accion+"("+parametros+");";
         opcion.setAttribute('onclick',textoonclick);
         opcion.innerHTML = accion;
