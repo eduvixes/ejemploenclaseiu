@@ -213,8 +213,61 @@ datospersonas = Array(
 
 class Gestion_personas extends GestionEntidad{
 
+    ponerbotonesaddysearch(){
+        document.getElementById("botonADD").setAttribute('onclick','Gestion_personas.createForm_ADD()');
+        document.getElementById("botonSEARCH").setAttribute('onclick','Gestion_personas.createForm_SEARCH()');
+        document.getElementById("botonADD").innerText = 'ADD';
+        document.getElementById("botonSEARCH").innerText = 'SEARCH';
+    }
+
+    resetearformpersona() {
+
+        //poner en estado inicial el formulario otra vez
+    
+    }
+
     static createForm_ADD(){
-        alert('add personas');
+
+        // resetear el formulario
+        this.resetearformpersona();
+
+        // se rellena el action del formulario
+        document.getElementById('id_pruebaform').action = 'javascript:Gestion_personas.ADD();';
+        document.getElementById('id_pruebaform').onsubmit = add_persona;
+
+        // se coloca el onblur del dni y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
+        document.getElementById('id_dni').onblur = comprobar_dni;
+        document.getElementById('id_dni').value = '';
+
+        // se coloca el onblur del nombre y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
+        document.getElementById('id_nombre_persona').onblur = comprobar_nombre;
+        document.getElementById('id_nombre_persona').value = '';
+
+        document.getElementById('id_apellidos_persona').onblur = comprobar_apellido;
+        document.getElementById('id_apellidos_persona').value = '';
+
+        document.getElementById('id_fechanac').onchange = comprobar_fechanac;
+        document.getElementById('id_fechaNacimiento_persona').value = '';
+
+        document.getElementById('id_direccion_persona').onblur = comprobar_direccion;
+        document.getElementById('id_direccion_persona').value = '';
+
+        document.getElementById('id_telefono_persona').onblur = comprobar_telefono;
+        document.getElementById('id_telefono_persona').value = '';
+
+        document.getElementById('id_email_persona').onblur = comprobar_email;
+        document.getElementById('id_email_persona').value = '';
+
+        document.getElementById('id_foto_persona').onblur = comprobar_foto;
+        document.getElementById('id_foto_persona').value = '';
+
+       document.getElementById('id_submit').value = 'ADD';
+
+        // para actualizar idioma despues de incluir la imagen
+        setLang();
+
+        // se muestra el formulario
+        document.getElementById('id_pruebaform').style.display = 'block';
     }
     
     static createForm_EDIT(){

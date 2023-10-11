@@ -8,6 +8,8 @@ class GestionEntidad {
 
     mostrarTitulos(){
 
+        this.ponerbotonesaddysearch();
+
         let cabecera = document.createElement('thead');
     
         let textolineatitulos = '<tr>';
