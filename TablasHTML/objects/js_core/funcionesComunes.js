@@ -1,7 +1,11 @@
+
+// aqui todos las funciones de modificaciones html sobre la pagina
+// puede transformarse en una clase
+// se pueden hacer metodos que reciben id para hacer alguno de estos
+
 function inicializa_pagina(){
     cerrar_div_mensajes();
     cerrar_div_formulario();
-    let mivariable = 'javi';
 }
 
 function cerrar_div_mensajes(){

@@ -11,64 +11,61 @@
 </head>
 <body onload="inicializa_pagina();personas = new Gestion_personas('personas',datospersonas,Array('dni','telefono_persona')); personas.mostrartabla();">
 	<div id="div_titulo_pagina" class="formato_titulo_pagina">
-		<p id="id_texto_titulo_tabla" onclick="saludar();">pagina de prueba practica 2 iu</p>
+		<p id="id_texto_titulo_tabla">pagina de prueba practica 2 iu</p>
 	</div>
 	<div id="div_mensajes_pagina" class="formato_mensajes_pagina">
 		<p id="texto_mensaje"></p>
 		<p onclick="cerrar_div_mensajes();">Cerrar</p>
 	</div>
-    
-	<!--<div id="addysearch">
-		<button id="botonADD" onclick="Gestion_personas.createForm_ADD();">ADD</button>
-		<button id="botonSEARCH" onclick="Gestion_personas.createForm_SEARCH();">SEARCH</button>
-	</div>-->
 
 	<div id="id_tabla_datos">
         
     </div>
 	
 	<div id='id_div_pruebaform'>
-	<form id='id_pruebaform' name='pruebaform' method='post'>
-	
-		<label class="dni">DNI</label>
-		<input type='text' id='id_dni' name='dni'></input>
-		<br>
-		
-		<label class="nombre_persona">Nombre de pila</label>
-		<input type='text' id='id_nombre_persona' name='nombre_persona'></input>
-		<br>
-		
-		<label class="apellidos_persona">apellidos</label>
-		<input type='text' id='id_apellidos_persona' name='apellidos_persona'></input>
-		<br>
-		
-		<label class="fechaNacimiento_persona">Fecha de Nacimiento</label>
-		<input type='date' id='id_fechaNacimiento_persona' name='fechaNacimiento_persona'></input>
-		
-		<br>
-		<label class="direccion_persona">Dirección Postal</label>
-		<input type='text' id='id_direccion_persona' name='direccion_persona'></input>
-		
-		<br>
-		<label class="telefono_persona">Teléfono Persona</label>
-		<input type='text' id='id_telefono_persona' name='telefono_persona'></input>
-		
-		<br>
-		<label class="email_persona">Correo Electronico</label>
-		<input type='text' id='id_email_persona' name='email_persona'></input>
-		
-		<br>
-		<label class="foto_persona"></label>
-		<input type='text' id='id_foto_persona' name='foto_persona'></input>
 
-		<br>
-		<input type="submit" id='id_submit' value="" />
+		<form id='id_pruebaform' name='pruebaform' method='post'>
 		
-		<br>
-		<button class="btnVolver titulo_volver" onclick="window.location.href = 'Gestion_personas.html';">Volver</button>
-		
-	</form>
+			<label class="dni">DNI</label>
+			<input type='text' id='id_dni' name='dni'></input>
+			<br>
+			
+			<label class="nombre_persona">Nombre de pila</label>
+			<input type='text' id='id_nombre_persona' name='nombre_persona'></input>
+			<br>
+			
+			<label class="apellidos_persona">apellidos</label>
+			<input type='text' id='id_apellidos_persona' name='apellidos_persona'></input>
+			<br>
+			
+			<label class="fechaNacimiento_persona">Fecha de Nacimiento</label>
+			<input type='date' id='id_fechaNacimiento_persona' name='fechaNacimiento_persona'></input>
+			
+			<br>
+			<label class="direccion_persona">Dirección Postal</label>
+			<input type='text' id='id_direccion_persona' name='direccion_persona'></input>
+			
+			<br>
+			<label class="telefono_persona">Teléfono Persona</label>
+			<input type='text' id='id_telefono_persona' name='telefono_persona'></input>
+			
+			<br>
+			<label class="email_persona">Correo Electronico</label>
+			<input type='text' id='id_email_persona' name='email_persona'></input>
+			
+			<br>
+			<label class="foto_persona">Foto Persona</label>
+			<input type='file' id='id_foto_persona' name='foto_persona'></input>
+
+			<br>
+			<input type="submit" id='id_submit' value="" />
+			
+			<br>
+			<button class="btnVolver titulo_volver" onclick="window.location.href = 'Gestion_personas.html';">Volver</button>
+			
+		</form>
 	
-	  </div>
+	</div>
+
 </body>
 </html>

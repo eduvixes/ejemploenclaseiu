@@ -145,3 +145,22 @@ class GestionEntidad {
     
 }
 
+class validacionesatomicas{
+
+    constructor(){
+
+    }
+
+    static validar_dni(id){
+        let dni = document.getElementById(id);
+        let condicion = true;
+        if (condicion) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+}
+

@@ -213,10 +213,14 @@ datospersonas = Array(
 
 class Gestion_personas extends GestionEntidad{
 
-
+    // se puede hacer uno general en GestionEntidad que recorra todos los atributos haciendo estas cosas
     static resetearformpersona() {
 
-        //poner en estado inicial el formulario otra vez
+        //poner en vacio todos los valores
+        
+        //quitar los eventos
+
+        //poner todos required
     
     }
 
@@ -225,39 +229,37 @@ class Gestion_personas extends GestionEntidad{
         // resetear el formulario
         this.resetearformpersona();
 
-        //this.rellenarbotonesaddysearch('personas');
-
         // se rellena el action del formulario
         document.getElementById('id_pruebaform').action = 'javascript:Gestion_personas.ADD();';
         document.getElementById('id_pruebaform').setAttribute('onsubmit', 'return Gestion_personas.comprobar_submit();');
 
         // se coloca el onblur del dni y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
-        //document.getElementById('id_dni').onblur = comprobar_dni;
+        document.getElementById('id_dni').setAttribute('onblur', 'Gestion_personas.comprobar_id_dni()');
         document.getElementById('id_dni').value = '';
 
         // se coloca el onblur del nombre y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
-        //document.getElementById('id_nombre_persona').onblur = comprobar_nombre;
+        document.getElementById('id_nombre_persona').setAttribute('onblur', 'Gestion_personas.comprobar_id_nombre_persona()');
         document.getElementById('id_nombre_persona').value = '';
 
-        //document.getElementById('id_apellidos_persona').onblur = comprobar_apellido;
+        document.getElementById('id_apellidos_persona').setAttribute('onblur', 'Gestion_personas.comprobar_id_apellidos_persona()');
         document.getElementById('id_apellidos_persona').value = '';
 
-        //document.getElementById('id_fechanac').onchange = comprobar_fechanac;
+        document.getElementById('id_fechaNacimiento_persona').setAttribute('onchange','Gestion_personas.comprobar_id_fechaNacimiento_persona()');
         document.getElementById('id_fechaNacimiento_persona').value = '';
 
-        document.getElementById('id_direccion_persona').setAttribute('onblur','Gestion_personas.comprobar_direccion()');
+        document.getElementById('id_direccion_persona').setAttribute('onblur','Gestion_personas.comprobar_id_direccion_persona()');
         document.getElementById('id_direccion_persona').value = '';
 
-        //document.getElementById('id_telefono_persona').onblur = comprobar_telefono;
+        document.getElementById('id_telefono_persona').setAttribute('onblur','Gestion_personas.comprobar_id_telefono_persona()');
         document.getElementById('id_telefono_persona').value = '';
 
-        //document.getElementById('id_email_persona').onblur = comprobar_email;
+        document.getElementById('id_email_persona').setAttribute('onblur','Gestion_personas.comprobar_id_email_persona()');
         document.getElementById('id_email_persona').value = '';
 
-        //document.getElementById('id_foto_persona').onblur = comprobar_foto;
+        document.getElementById('id_foto_persona').setAttribute('onblur','Gestion_personas.comprobar_id_foto_persona()');
         document.getElementById('id_foto_persona').value = '';
 
-       document.getElementById('id_submit').value = 'ADD';
+        document.getElementById('id_submit').value = 'ADD';
 
         // para actualizar idioma despues de incluir la imagen
         //setLang();
@@ -287,13 +289,43 @@ class Gestion_personas extends GestionEntidad{
         return true;
     }
 
+    //-----------------------------------------------------------------------------
+    // acciones a back
+
+    static ADD(){
+        alert ('llamada a back');
+    }
+
+    static EDIT(){
+        alert ('llamada a back');
+    }
+
+    static DELETE(){
+        alert ('llamada a back');
+    }
+
     static ADD(){
         alert ('llamada a back');
     }
 
     //-----------------------------------------------------------------------------
     //validaciones campos
-    static comprobar_direccion(){
+
+    static comprobar_id_dni(){
+
+        console.log(validacionesatomicas.validar_dni('id_dni'));
+
+    }
+
+    static comprobar_id_nombre_persona(){
+
+    }
+
+    static comprobar_is_apellidos_persona(){
+
+    }
+
+    static comprobar_id_direccion_persona(){
         alert('validacion direccion');
         return true;
     }
