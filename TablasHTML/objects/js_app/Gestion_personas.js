@@ -230,34 +230,34 @@ class Gestion_personas extends GestionEntidad{
         this.resetearformpersona();
 
         // se rellena el action del formulario
-        document.getElementById('id_pruebaform').action = 'javascript:Gestion_personas.ADD();';
-        document.getElementById('id_pruebaform').setAttribute('onsubmit', 'return Gestion_personas.comprobar_submit();');
+        document.getElementById('IU_form').action = 'javascript:Gestion_personas.ADD();';
+        document.getElementById('IU_form').setAttribute('onsubmit', 'return Gestion_personas.comprobar_submit();');
 
         // se coloca el onblur del dni y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
-        document.getElementById('id_dni').setAttribute('onblur', 'Gestion_personas.comprobar_id_dni()');
-        document.getElementById('id_dni').value = '';
+        document.getElementById('dni').setAttribute('onblur', 'Gestion_personas.comprobar_dni()');
+        document.getElementById('dni').value = '';
 
         // se coloca el onblur del nombre y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
-        document.getElementById('id_nombre_persona').setAttribute('onblur', 'Gestion_personas.comprobar_id_nombre_persona()');
-        document.getElementById('id_nombre_persona').value = '';
+        document.getElementById('nombre_persona').setAttribute('onblur', 'Gestion_personas.comprobar_nombre_persona()');
+        document.getElementById('nombre_persona').value = '';
 
-        document.getElementById('id_apellidos_persona').setAttribute('onblur', 'Gestion_personas.comprobar_id_apellidos_persona()');
-        document.getElementById('id_apellidos_persona').value = '';
+        document.getElementById('apellidos_persona').setAttribute('onblur', 'Gestion_personas.comprobar_apellidos_persona()');
+        document.getElementById('apellidos_persona').value = '';
 
-        document.getElementById('id_fechaNacimiento_persona').setAttribute('onchange','Gestion_personas.comprobar_id_fechaNacimiento_persona()');
-        document.getElementById('id_fechaNacimiento_persona').value = '';
+        document.getElementById('fechaNacimiento_persona').setAttribute('onchange','Gestion_personas.comprobar_fechaNacimiento_persona()');
+        document.getElementById('fechaNacimiento_persona').value = '';
 
-        document.getElementById('id_direccion_persona').setAttribute('onblur','Gestion_personas.comprobar_id_direccion_persona()');
-        document.getElementById('id_direccion_persona').value = '';
+        document.getElementById('direccion_persona').setAttribute('onblur','Gestion_personas.comprobar_direccion_persona()');
+        document.getElementById('direccion_persona').value = '';
 
-        document.getElementById('id_telefono_persona').setAttribute('onblur','Gestion_personas.comprobar_id_telefono_persona()');
-        document.getElementById('id_telefono_persona').value = '';
+        document.getElementById('telefono_persona').setAttribute('onblur','Gestion_personas.comprobar_telefono_persona()');
+        document.getElementById('telefono_persona').value = '';
 
-        document.getElementById('id_email_persona').setAttribute('onblur','Gestion_personas.comprobar_id_email_persona()');
-        document.getElementById('id_email_persona').value = '';
+        document.getElementById('email_persona').setAttribute('onblur','Gestion_personas.comprobar_email_persona()');
+        document.getElementById('email_persona').value = '';
 
-        document.getElementById('id_foto_persona').setAttribute('onblur','Gestion_personas.comprobar_id_foto_persona()');
-        document.getElementById('id_foto_persona').value = '';
+        document.getElementById('foto_persona').setAttribute('onblur','Gestion_personas.comprobar_foto_persona()');
+        document.getElementById('foto_persona').value = '';
 
         document.getElementById('id_submit').value = 'ADD';
 
@@ -265,7 +265,7 @@ class Gestion_personas extends GestionEntidad{
         //setLang();
 
         // se muestra el formulario
-        document.getElementById('id_div_pruebaform').style.display = 'block';
+        document.getElementById('div_IU_form').style.display = 'block';
     }
 
     //-----------------------------------------------------------------------------
@@ -282,11 +282,33 @@ class Gestion_personas extends GestionEntidad{
         alert('showcurrent personas');
     }
 
+    static createForm_SEARCH(){
+        alert('SEARCH personas');
+    }
+
     //-----------------------------------------------------------------------------
     // submits
     static comprobar_submit(){
         alert('paso por comprobar submit');
-        return true;
+        return (
+            comprobar_dni() &&
+            comprobar_nombre_persona() &&
+
+
+            comprobar_foto_persona()
+        );
+        
+    }
+
+    static comprobar_submit_SEARCH(){
+        alert('paso por comprobar submit search');
+        return (
+            comprobar_dni_SEARCH() &&
+            comprobar_nombre_persona_SEARCH() &&
+
+
+            comprobar_foto_persona_SEARCH()
+        );
     }
 
     //-----------------------------------------------------------------------------
@@ -304,30 +326,61 @@ class Gestion_personas extends GestionEntidad{
         alert ('llamada a back');
     }
 
-    static ADD(){
+    static SEARCH(){
         alert ('llamada a back');
     }
 
     //-----------------------------------------------------------------------------
     //validaciones campos
 
-    static comprobar_id_dni(){
+    static comprobar_dni(){
 
-        console.log(validacionesatomicas.validar_dni('id_dni'));
-
-    }
-
-    static comprobar_id_nombre_persona(){
+        console.log(validacionesatomicas.validar_dni('dni'));
 
     }
 
-    static comprobar_is_apellidos_persona(){
+    static comprobar_nombre_persona(){
+
+        if (validacionesatomicas.size_minimo('nombre_persona',6)){
+            DOM_class.mostrarexitovalor('nombre_persona');
+        }
+        else{
+            //modificacion parametros texto error
+            DOM_class.mostrardivmensajes('nombre_persona','KO_nombre_persona_tam_min');
+            //llamar funcion muestra errores
+          
+            //salir ejecucion con false
+            return false;
+        }
+
+        if (validacionesatomicas.size_maximo('nombre_persona',50)){
+            DOM_class.mostrarexitovalor(nombrepersona);
+        }
+        else{
+            //modificacion parametros texto error
+            DOM_class.mostrardivmensajes('nombre_persona','KO_nombre_persona_tam_max');
+            //llamar funcion muestra errores
+          
+            //salir ejecucion con false
+            return false;
+        }
+
+
 
     }
 
-    static comprobar_id_direccion_persona(){
-        alert('validacion direccion');
+    static comprobar_apellidos_persona(){
         return true;
     }
+
+    static comprobar_FechaNacimiento_persona(){
+        return true;
+    }
+
+    static comprobar_foto_persona(){
+        alert('validacion foto');
+        return true;
+    }
+
 
 }

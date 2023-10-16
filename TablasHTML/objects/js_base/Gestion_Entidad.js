@@ -99,7 +99,7 @@ class GestionEntidad {
     }
 
     mostrarTituloTabla(){
-        document.getElementById("id_texto_titulo_tabla").innerHTML = "Gestión de "+this.entidad;
+        document.getElementById("id_texto_titulo_tabla").innerHTML = textos_ES['titulo_pagina_'+this.entidad];
     }
     
     mostrartabla(){
@@ -159,6 +159,24 @@ class validacionesatomicas{
         }
         else{
             return false;
+        }
+    }
+
+    static size_minimo(id, valorminimo){
+        if (document.getElementById(id).value.length < valorminimo){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    static size_maximo(id, valormaximo){
+        if (document.getElementById(id).value.length > valormaximo){
+            return false;
+        }
+        else{
+            return true;
         }
     }
     
