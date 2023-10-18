@@ -7,3 +7,5 @@ let textos_ES={
     "KO_nombre_persona_tam_max":"nombre persona peta maximo"
 
 };
+
+let traduccion = textos_ES;

@@ -72,17 +72,6 @@
 
 		}
 
-		async function creardatosgeneralesalumno(variabledatosgenerales, alumno){
-
-			console.log('grabo los datos generales de un alumno'+variabledatosgenerales);
-			cabecera = {'alumno':alumno,'nombre':variabledatosgenerales[0],'horas':variabledatosgenerales[2]};
-			datos['cabecera'] = cabecera;
-			salida[alumno] = datos;
-
-			
-
-		}
-
 
 		function crearfilatablalistaalumnos(datos, alumno){
 
@@ -109,7 +98,7 @@
 			.then((respuesta) => {
 
 				let tests = validar_testdef(test_def, alumno);
-				textohtml = "<p> Numero de tests : "+tests.numtests+" Resultado : "+tests.correctos+"</p>";
+				let textohtml = "<p> Numero de tests : "+tests.numtests+" Resultado : "+tests.correctos+"</p>";
 				$("#"+alumno).append(textohtml);
 
 			});
@@ -141,8 +130,6 @@
 
 			})
 		}
-
-		let resultados = '';
 
 		async function buscarAlumnos(){
 

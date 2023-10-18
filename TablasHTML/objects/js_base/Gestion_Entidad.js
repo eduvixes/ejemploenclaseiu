@@ -99,7 +99,7 @@ class GestionEntidad {
     }
 
     mostrarTituloTabla(){
-        document.getElementById("id_texto_titulo_tabla").innerHTML = textos_ES['titulo_pagina_'+this.entidad];
+        document.getElementById("id_texto_titulo_tabla").innerHTML = traduccion['titulo_pagina_'+this.entidad];
     }
     
     mostrartabla(){

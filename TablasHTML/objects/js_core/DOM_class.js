@@ -15,13 +15,29 @@ class DOM_class{
 
     static mostrardivmensajes(id,codigoerror){
         //cambiar color bordes por el id
-        document.getElementById('texto_mensaje').innerText = textos_ES[codigoerror];
+        document.getElementById('texto_mensaje').innerText = traduccion[codigoerror];
         document.getElementById("div_mensajes_pagina").style.display = "block";
+    }
+
+    static mostrardivmensajeserrordebajo(id,codigoerror){
+        //cambiar color bordes por el id
+        document.getElementById('error_'+id).innerText = traduccion[codigoerror];
+        document.getElementById("div_error_"+id).style.display = "block";
+    }
+
+    static quitardivmensajeserrordebajo(id) {
+        document.getElementById('error_'+id).innerText = '';
+        document.getElementById("div_error_"+id).style.display = "none";
     }
 
     static mostrarexitovalor(id){
         //cambiar color bordes por el id a verde
-        document.getElementById("div_mensajes_pagina").style.display = "block";
+       
+    }
+
+    static mostrarerrorvalor(id){
+        //cambiar color bordes por el id a rojo
+        
     }
 
     static cerrar_div_formulario(){

@@ -222,6 +222,8 @@ class Gestion_personas extends GestionEntidad{
 
         //poner todos required
     
+        //ocultar divs
+        document.getElementById('div_error_nombre_persona').style.display = 'none';
     }
 
     static createForm_ADD(){
@@ -343,12 +345,13 @@ class Gestion_personas extends GestionEntidad{
 
         if (validacionesatomicas.size_minimo('nombre_persona',6)){
             DOM_class.mostrarexitovalor('nombre_persona');
+            DOM_class.quitardivmensajeserrordebajo('nombre_persona');
         }
         else{
             //modificacion parametros texto error
-            DOM_class.mostrardivmensajes('nombre_persona','KO_nombre_persona_tam_min');
+            DOM_class.mostrardivmensajeserrordebajo('nombre_persona','KO_nombre_persona_tam_min');
             //llamar funcion muestra errores
-          
+            DOM_class.mostrarerrorvalor('nombre_persona');
             //salir ejecucion con false
             return false;
         }
