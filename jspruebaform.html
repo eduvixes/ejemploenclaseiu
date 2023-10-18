@@ -1,15 +1,176 @@
 </!DOCTYPE html>
 <html>
 <head>
-	<script type="text/javascript" src="./tonteria.js"></script>
+	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon" />
-	<title>Javi</title>
-	<script type="text/javascript" src="./funcionesComunes.js"></script>
-	<script type="text/javascript" src="./funcionesFormulario.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="./ET1/js/testarrays.js"></script>
+	<title>Corrección de la ET1</title>
+
 </head>
-<body onload="inicializa_pagina_js();">
+<body>
+
+	<div id="cargascripts">
+
+	</div>
+	<div id="div_listaalumnos">
+		<table id="tabla_lista_alumnos">
+			<thead>
+				<tr>
+					<th>nombre</th>
+					<th>entrega</th>
+					<th>horas</th>
+				</tr>
+			</thead>
+			<tbody id="tbody_alumnos">
+
+			</tbody>
+		</table>
+	</div>
+	<div id="div_detalle_alumnos">
+
+	</div>
+
+	<script type="text/javascript">
+
+		document.getElementById("cargascripts").innerHTML = '';
+
+		var salida = Array();
+
+		var datos = Array();
+		
+
+		function validar_testdef(test_def, alumno){
+
+			console.log('longitud tests alumno'+alumno+' = '+test_def.length)
+			definiciondetests = ordenardefiniciontest(test_def);
+			let sinerror = true;
+			test_def.forEach(element => {
+				filacorrecta = true;
+				if (
+					(typeof(element[0])=='string')  &&
+					(typeof(element[1])=='number')  &&
+					(typeof(element[2])=='string')  &&
+					(typeof(element[3])=='boolean')  &&
+					(typeof(element[4])=='string')  
+					){	
+					}
+				else
+					{
+						filacorrecta = false;
+						sinerror = false;
+					}
+			});
+			
+			let tests = {
+				'numtests':test_def.length,
+				'correctos':sinerror
+			}
+			return tests; 
+
+		}
+
+		async function creardatosgeneralesalumno(variabledatosgenerales, alumno){
+
+			console.log('grabo los datos generales de un alumno'+variabledatosgenerales);
+			cabecera = {'alumno':alumno,'nombre':variabledatosgenerales[0],'horas':variabledatosgenerales[2]};
+			datos['cabecera'] = cabecera;
+			salida[alumno] = datos;
+
+			
+
+		}
+
+
+		function crearfilatablalistaalumnos(datos, alumno){
+
+			let fila = "<tr>";
+			datos.forEach(element => {
+				fila += "<td>"+element+"</td>";
+			});
+			fila += "<td><a onclick='creardivalumno('"+alumno+"')>crear</a></td>";
+			fila += "</tr>";
+			$("#tbody_alumnos").append(fila);
+		}
+
+		async function creardivalumno(alummo){
+
+			div_alumno = document.createElement('div');
+			div_alumno.id = alumno;
+			document.getElementById('div_detalle_alumnos').append(div_alumno);
+
+			let directorio = './ET1/js/ET1/';
+
+
+			let ficherodatostestsalumno = directorio+'ET1_'+alumno+'/ET1_'+alumno+'_tests.js';
+			await PromesaLoad(ficherodatostestsalumno)
+			.then((respuesta) => {
+
+				let tests = validar_testdef(test_def, alumno);
+				textohtml = "<p> Numero de tests : "+tests.numtests+" Resultado : "+tests.correctos+"</p>";
+				$("#"+alumno).append(textohtml);
+
+			});
+			
+		}
+
+
+		async function cargarcabecera(alumno){
+
+				let directorio = './ET1/js/ET1/';
+			
+				let ficherodatosgeneralesalumno = directorio+'ET1_'+alumno+'/ET1_'+alumno+'.js';
+				PromesaLoad(ficherodatosgeneralesalumno)
+					.then((respuesta) => {
+						let datosgenerales = eval('datosgenerales_'+alumno);
+						crearfilatablalistaalumnos(datosgenerales, alumno);
+					});
+			
+		}
+
+		function PromesaLoad(url){
+
+			return new Promise(function(resolve, reject){
+
+				$('#cargascripts').load(url, function(){
+					resolve(true);	
+				})
+				
+
+			})
+		}
+
+		let resultados = '';
+
+		async function buscarAlumnos(){
+
+			let listaalumnos = './ET1/js/ficheroalumnos.js';
+
+			await PromesaLoad(listaalumnos)
+				.then((respuesta) => {
+					if (respuesta){
+						info_alumnos.forEach(alumno => {
+							cargarcabecera(alumno);
+						});
+					}
+					else{
+						console.log('aun no hay respuesta');
+					}
+					return true;
+				});
+
+			
+		
+		}
+
+		
+		buscarAlumnos();
+
+	
+	</script>
+
 	
 </body>
 </html>
