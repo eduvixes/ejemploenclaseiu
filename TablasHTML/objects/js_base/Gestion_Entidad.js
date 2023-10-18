@@ -151,7 +151,7 @@ class validacionesatomicas{
 
     }
 
-    static validar_dni(id){
+    static validar_dni(id,valor=null){
         let dni = document.getElementById(id);
         let condicion = true;
         if (condicion) {

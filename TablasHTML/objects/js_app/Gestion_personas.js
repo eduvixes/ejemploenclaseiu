@@ -224,6 +224,7 @@ class Gestion_personas extends GestionEntidad{
     
         //ocultar divs
         document.getElementById('div_error_nombre_persona').style.display = 'none';
+        document.getElementById('div_error_apellidos_persona').style.display = 'none';
     }
 
     static createForm_ADD(){
@@ -344,35 +345,75 @@ class Gestion_personas extends GestionEntidad{
     static comprobar_nombre_persona(){
 
         if (validacionesatomicas.size_minimo('nombre_persona',6)){
-            DOM_class.mostrarexitovalor('nombre_persona');
-            DOM_class.quitardivmensajeserrordebajo('nombre_persona');
         }
         else{
             //modificacion parametros texto error
             DOM_class.mostrardivmensajeserrordebajo('nombre_persona','KO_nombre_persona_tam_min');
+
+            //salir ejecucion con false
+            return false;
+        }
+
+        if (validacionesatomicas.size_maximo('nombre_persona',50)){
+        }
+        else{
+            //modificacion parametros texto error
+            DOM_class.mostrardivmensajes('nombre_persona','KO_nombre_persona_tam_max');
+
+            //salir ejecucion con false
+            return false;
+        }
+
+        DOM_class.mostrarexitovalor('nombre_persona');
+        return true;
+
+    }
+
+    static comprobar_nombre_persona_SEARCH(){
+
+        if (validacionesatomicas.size_maximo('nombre_persona',50)){   
+        }
+        else{
+            //modificacion parametros texto error
+            DOM_class.mostrardivmensajes('nombre_persona','KO_nombre_persona_tam_max');
             //llamar funcion muestra errores
             DOM_class.mostrarerrorvalor('nombre_persona');
             //salir ejecucion con false
             return false;
         }
 
-        if (validacionesatomicas.size_maximo('nombre_persona',50)){
+        DOM_class.mostrarexitovalor('nombre_persona');
+        return true;
+
+    }
+
+    static comprobar_apellidos_persona(){
+
+        if (validacionesatomicas.size_minimo('apellidos_persona',6)){
+            DOM_class.mostrarexitovalor('apellidos_persona');
+            DOM_class.quitardivmensajeserrordebajo('apellidos_persona');
+        }
+        else{
+            //modificacion parametros texto error
+            DOM_class.mostrardivmensajeserrordebajo('apellidos_persona','KO_apellidos_persona_tam_min');
+            //llamar funcion muestra errores
+            DOM_class.mostrarerrorvalor('apellidos_persona');
+            //salir ejecucion con false
+            return false;
+        }
+
+        if (validacionesatomicas.size_maximo('apellidos_persona',50)){
             DOM_class.mostrarexitovalor(nombrepersona);
         }
         else{
             //modificacion parametros texto error
-            DOM_class.mostrardivmensajes('nombre_persona','KO_nombre_persona_tam_max');
+            DOM_class.mostrardivmensajes('apellidos_persona','KO_apellidos_persona_tam_max');
             //llamar funcion muestra errores
           
             //salir ejecucion con false
             return false;
         }
 
-
-
-    }
-
-    static comprobar_apellidos_persona(){
         return true;
     }
 
