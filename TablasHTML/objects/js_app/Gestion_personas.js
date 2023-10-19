@@ -216,15 +216,14 @@ class Gestion_personas extends GestionEntidad{
     // se puede hacer uno general en GestionEntidad que recorra todos los atributos haciendo estas cosas
     static resetearformpersona() {
 
-        //poner en vacio todos los valores
+        GestionEntidad.resetearForm();
         
-        //quitar los eventos
-
         //poner todos required
     
         //ocultar divs
         document.getElementById('div_error_nombre_persona').style.display = 'none';
         document.getElementById('div_error_apellidos_persona').style.display = 'none';
+        document.getElementById('div_error_direccion_persona').style.display = 'none';
     }
 
     static createForm_ADD(){
@@ -403,7 +402,7 @@ class Gestion_personas extends GestionEntidad{
         }
 
         if (validacionesatomicas.size_maximo('apellidos_persona',50)){
-            DOM_class.mostrarexitovalor(nombrepersona);
+            DOM_class.mostrarexitovalor('apellidos_persona');
         }
         else{
             //modificacion parametros texto error
@@ -419,6 +418,33 @@ class Gestion_personas extends GestionEntidad{
 
     static comprobar_FechaNacimiento_persona(){
         return true;
+    }
+
+    static comprobar_direccion_persona(){
+
+        if (validacionesatomicas.size_minimo('direccion_persona',20)){
+        }
+        else{
+            //modificacion parametros texto error
+            DOM_class.mostrardivmensajeserrordebajo('direccion_persona','KO_direccion_persona_tam_min');
+
+            //salir ejecucion con false
+            return false;
+        }
+
+        if (validacionesatomicas.size_maximo('direccion_persona',70)){
+        }
+        else{
+            //modificacion parametros texto error
+            DOM_class.mostrardivmensajes('direccion_persona','KO_direccion_persona_tam_max');
+
+            //salir ejecucion con false
+            return false;
+        }
+
+        DOM_class.mostrarexitovalor('direccion_persona');
+        return true;
+
     }
 
     static comprobar_foto_persona(){

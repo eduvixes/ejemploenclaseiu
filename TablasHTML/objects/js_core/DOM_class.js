@@ -23,6 +23,7 @@ class DOM_class{
     static mostrardivmensajeserrordebajo(id,codigoerror){
         //cambiar color bordes por el id
         document.getElementById('error_'+id).innerText = traduccion[codigoerror];
+        document.getElementById('error_'+id).style.color = 'red';
         document.getElementById("div_error_"+id).style.display = "block";
         DOM_class.mostrarerrorvalor(id);
     }
@@ -34,13 +35,19 @@ class DOM_class{
 
     static mostrarexitovalor(id){
         //cambiar color bordes por el id a verde
-
+        document.getElementById(id).style.borderWidth = '1px';
+        document.getElementById(id).style.borderStyle = 'solid';
+        document.getElementById(id).style.borderColor = 'green';
         //eliminar div error por si existe
         DOM_class.quitardivmensajeserrordebajo('nombre_persona');
     }
 
     static mostrarerrorvalor(id){
         //cambiar color bordes por el id a rojo
+        
+        document.getElementById(id).style.borderWidth = '1px';
+        document.getElementById(id).style.borderStyle = 'solid';
+        document.getElementById(id).style.borderColor = 'red';
         
     }
 

@@ -26,7 +26,7 @@ class GestionEntidad {
     
         for (let atributo in this.columnasamostrar){
     
-            textolineatitulos += '<th>'+this.columnasamostrar[atributo]+'</th>';
+            textolineatitulos += '<th>'+traduccion[this.columnasamostrar[atributo]]+'</th>';
     
         }
     
