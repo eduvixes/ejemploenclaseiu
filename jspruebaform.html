@@ -33,6 +33,45 @@
 
 	</div>
 
+	<div id="datosgenerales"></div>
+
+    <div id="testdefiniciones">
+        <h1>Resultado estructura definición tests</h1>
+        <p id="resultadodef"></p>
+        <div id="div_tabla_def">
+            <table id="tabla_def" border="1">
+
+            </table>
+        </div>
+    </div>
+
+    </div>
+    <div id="testpruebas">
+        <h1>Resultado estructura definición pruebas</h1>
+        <p id="resultadoprueba"></p>
+        <div id="div_tabla_prueba">
+            <table id="tabla_prueba" border="1">
+
+            </table>
+        </div>
+    </div>
+
+    <div id="pruebasentest">
+        <h1>Número de pruebas por test</h1>
+        <p id="resultadopruebasentest"></p>
+        <div id="div_tabla_pruebaentest">
+            <table id="tabla_pruebaentest" border="1">
+
+            </table>
+        </div>
+    </div>
+
+    <div id="cargaalumnos">
+
+    </div>
+
+<!---- scripting -->
+
 	<script type="text/javascript">
 
 		document.getElementById("cargascripts").innerHTML = '';
@@ -67,11 +106,22 @@
 			let tests = {
 				'numtests':test_def.length,
 				'correctos':sinerror
-			}
+			};
+
 			return tests; 
 
 		}
 
+		function crearboton(funcion, alumno, texto){
+			let columna = document.createElement('td');
+			let opcion = document.createElement('a');
+			textoonclick = funcion+"('"+alumno+"');";
+			opcion.setAttribute('onclick',textoonclick);
+			opcion.innerHTML = texto;
+			columna.appendChild(opcion);
+			return columna.outerHTML;
+
+		}
 
 		function crearfilatablalistaalumnos(datos, alumno){
 
@@ -79,14 +129,15 @@
 			datos.forEach(element => {
 				fila += "<td>"+element+"</td>";
 			});
-			fila += "<td><a onclick='creardivalumno('"+alumno+"')>crear</a></td>";
+			fila += crearboton('creardivalumno',alumno,'crear');
 			fila += "</tr>";
 			$("#tbody_alumnos").append(fila);
+
 		}
+		
+		async function creardivalumno(alumno){
 
-		async function creardivalumno(alummo){
-
-			div_alumno = document.createElement('div');
+			/*div_alumno = document.createElement('div');
 			div_alumno.id = alumno;
 			document.getElementById('div_detalle_alumnos').append(div_alumno);
 
@@ -97,12 +148,19 @@
 			await PromesaLoad(ficherodatostestsalumno)
 			.then((respuesta) => {
 
-				let tests = validar_testdef(test_def, alumno);
-				let textohtml = "<p> Numero de tests : "+tests.numtests+" Resultado : "+tests.correctos+"</p>";
+				let tests = validar_testdef(eval('def_test_'+alumno), alumno);
+				let textohtml = "<table><tr><th>Alumno</th><th>Numero Tests</th><th>Correctos</th><th>Ver</th></tr>"
+				textohtml += "<tr><td>"+alumno+"</td><td>"+tests.numtests+"</td><td>"+tests.correctos+"</td></tr>";
 				$("#"+alumno).append(textohtml);
 
-			});
-			
+			});*/
+			directorio = './ET1/js/ET1/';
+			let nombrealumno = alumno;
+			tratargeneral(nombrealumno);
+    		tratardefiniciontests(nombrealumno);
+    		tratarpruebastests(nombrealumno);
+			comprobarpruebastests(nombrealumno);
+				
 		}
 
 
@@ -128,7 +186,8 @@
 				})
 				
 
-			})
+			});
+
 		}
 
 		async function buscarAlumnos(){
@@ -147,9 +206,6 @@
 					}
 					return true;
 				});
-
-			
-		
 		}
 
 		
