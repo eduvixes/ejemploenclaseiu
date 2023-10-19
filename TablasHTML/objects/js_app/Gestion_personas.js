@@ -217,10 +217,10 @@ class Gestion_personas extends GestionEntidad{
     static resetearformpersona() {
 
         GestionEntidad.resetearForm();
-        
+
         //poner todos required
     
-        //ocultar divs
+        //Modificaciones particulares entidad
         document.getElementById('div_error_nombre_persona').style.display = 'none';
         document.getElementById('div_error_apellidos_persona').style.display = 'none';
         document.getElementById('div_error_direccion_persona').style.display = 'none';
@@ -293,11 +293,11 @@ class Gestion_personas extends GestionEntidad{
     static comprobar_submit(){
         alert('paso por comprobar submit');
         return (
-            comprobar_dni() &&
-            comprobar_nombre_persona() &&
-
-
-            comprobar_foto_persona()
+            this.comprobar_dni() &&
+            this.comprobar_nombre_persona() &&
+            this.comprobar_apellidos_persona() &&
+            this.comprobar_direccion_persona() &&
+            this.comprobar_foto_persona()
         );
         
     }
@@ -305,11 +305,11 @@ class Gestion_personas extends GestionEntidad{
     static comprobar_submit_SEARCH(){
         alert('paso por comprobar submit search');
         return (
-            comprobar_dni_SEARCH() &&
-            comprobar_nombre_persona_SEARCH() &&
+            this.comprobar_dni_SEARCH() &&
+            this.comprobar_nombre_persona_SEARCH() &&
 
 
-            comprobar_foto_persona_SEARCH()
+            this.comprobar_foto_persona_SEARCH()
         );
     }
 
@@ -337,8 +337,8 @@ class Gestion_personas extends GestionEntidad{
 
     static comprobar_dni(){
 
-        console.log(validacionesatomicas.validar_dni('dni'));
-
+        //console.log(validacionesatomicas.validar_dni('dni'));
+        return true;
     }
 
     static comprobar_nombre_persona(){
@@ -389,30 +389,23 @@ class Gestion_personas extends GestionEntidad{
     static comprobar_apellidos_persona(){
 
         if (validacionesatomicas.size_minimo('apellidos_persona',6)){
-            DOM_class.mostrarexitovalor('apellidos_persona');
-            DOM_class.quitardivmensajeserrordebajo('apellidos_persona');
         }
         else{
-            //modificacion parametros texto error
-            DOM_class.mostrardivmensajeserrordebajo('apellidos_persona','KO_apellidos_persona_tam_min');
-            //llamar funcion muestra errores
-            DOM_class.mostrarerrorvalor('apellidos_persona');
+            DOM_class.mostrardivmensajeserrordebajo('apellidos_persona','KO_apellidos_persona_tam_min');;
             //salir ejecucion con false
             return false;
         }
 
         if (validacionesatomicas.size_maximo('apellidos_persona',50)){
-            DOM_class.mostrarexitovalor('apellidos_persona');
         }
         else{
             //modificacion parametros texto error
-            DOM_class.mostrardivmensajes('apellidos_persona','KO_apellidos_persona_tam_max');
-            //llamar funcion muestra errores
-          
+            DOM_class.mostrardivmensajeserrordebajo('apellidos_persona','KO_apellidos_persona_tam_max');
             //salir ejecucion con false
             return false;
         }
 
+        DOM_class.mostrarexitovalor('apellidos_persona');
         return true;
     }
 
@@ -436,7 +429,7 @@ class Gestion_personas extends GestionEntidad{
         }
         else{
             //modificacion parametros texto error
-            DOM_class.mostrardivmensajes('direccion_persona','KO_direccion_persona_tam_max');
+            DOM_class.mostrardivmensajeserrordebajo('direccion_persona','KO_direccion_persona_tam_max');
 
             //salir ejecucion con false
             return false;

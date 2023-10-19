@@ -1,8 +1,15 @@
 let textos_ES={
 
     // atributos persona
-    'dni':'Id Documento',
-    'telefono_persona':'Teléfono persona',
+    'dni':'Identificación',
+    'nombre_persona':'Nombre Persona',
+    'apellidos_persona':'Apellidos Persona',
+    'fechaNacimiento_persona':'Fec. Nacimiento Persona',
+    'direccion_persona':'Direccion Persona',
+    'telefono_persona':'Teléfono Persona',
+    'email_persona':'Correo-e Persona',
+    'foto_persona':'Foto Persona',
+
 
     // acciones
 

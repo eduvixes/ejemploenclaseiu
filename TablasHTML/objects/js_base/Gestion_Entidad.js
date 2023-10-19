@@ -26,7 +26,7 @@ class GestionEntidad {
     
         for (let atributo in this.columnasamostrar){
     
-            textolineatitulos += '<th>'+traduccion[this.columnasamostrar[atributo]]+'</th>';
+            textolineatitulos += '<th class="'+traduccion[this.columnasamostrar[atributo]]+'">'+traduccion[this.columnasamostrar[atributo]]+'</th>';
     
         }
     
@@ -140,6 +140,33 @@ class GestionEntidad {
 
     static createForm_SHOWCURRENT(){
         alert('falta create form SHOWCURRENT entidad heredada');
+    }
+
+    static resetearForm(){
+        //obtener campos del formulario
+        let campos = document.forms['IU_form'].elements;
+        //recorrer todos los campos
+        for (let i=0;i<campos.length;i++) {
+            //poner a vacio cada campo
+            //-------------------------
+            campos[i].value = '';
+            
+            //quitar los eventos de cada campo
+            //obtener los atributos del campo
+            let atributos = campos[i].getAttributeNames;
+            //definir los eventos a quitar
+            let eventos = Array('onblur','onclick','onchange');
+            for(let atributo in atributos){
+                if (atributo in eventos){
+                    //si el evento existe como atributo eliminarlo
+                    //---------------------------------------------
+                    campos[i].removeAttribute(atributo);
+                }
+            }
+        // poner todos los campos como required
+        // NO NECESARIO, YA VALIDAMOS CADA CAMPO
+        document.getElementById('div_error_'+campos[i].id).style.display = 'none';
+        };
     }
 
     

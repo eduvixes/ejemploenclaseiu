@@ -7,6 +7,7 @@
 	<title>Javi</title>
 	<script type="text/javascript" src="./locales/textos_ES.js"></script>
 	<script type="text/javascript" src="./js_core/DOM_class.js"></script>
+	<script type="text/javascript" src="./locales/idiomas.js"></script>
 	<script type="text/javascript" src="./js_base/Gestion_Entidad.js"></script>
 	<script type="text/javascript" src="./js_app/Gestion_personas.js"></script>
 </head>
@@ -26,11 +27,13 @@
 	<div id='div_IU_form'>
 
 		<form id='IU_form' name='IU_form' method='post'>
-		
-			<label class="dni">DNI</label>
-			<input type='text' id='dni' name='dni'></input>
-			<br>
 			
+			<label class="dni"></label>
+			</label>
+			<input type='text' id='dni' name='dni'></input>
+			<div id="div_error_dni" class="errorcampo"><a id="error_dni"></a></div>
+			<br>
+			<script>document.querySelector('.dni').innerHTML=traduccion['dni'];</script>
 			
 			<label class="nombre_persona">Nombre de pila</label>
 			<input type='text' id='nombre_persona' name='nombre_persona'></input>

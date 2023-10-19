@@ -39,7 +39,7 @@ class DOM_class{
         document.getElementById(id).style.borderStyle = 'solid';
         document.getElementById(id).style.borderColor = 'green';
         //eliminar div error por si existe
-        DOM_class.quitardivmensajeserrordebajo('nombre_persona');
+        DOM_class.quitardivmensajeserrordebajo(id);
     }
 
     static mostrarerrorvalor(id){
