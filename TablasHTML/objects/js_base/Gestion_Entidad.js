@@ -8,82 +8,102 @@ class GestionEntidad {
 
 
     ponerbotonesaddysearch(){
-        let textodivbotones = '<div id="addysearch"><button id="botonADD">ADD</button><button id="botonSEARCH">SEARCH</button></div>';
-        document.getElementById('id_tabla_datos').insertAdjacentHTML('beforebegin',textodivbotones);
-        document.getElementById("botonADD").setAttribute('onclick','Gestion_'+this.entidad+'.createForm_ADD()');
-        document.getElementById("botonSEARCH").setAttribute('onclick','Gestion_'+this.entidad+'.createForm_SEARCH()');
-        document.getElementById("botonADD").innerText = 'ADD';
-        document.getElementById("botonSEARCH").innerText = 'SEARCH';
+
+        if (document.getElementById("addysearch")){
+
+        }
+        else{
+            let textodivbotones = '<div id="addysearch"><button id="botonADD">ADD</button><button id="botonSEARCH">SEARCH</button></div>';
+            document.getElementById('id_tabla_datos').insertAdjacentHTML('beforebegin',textodivbotones);
+            document.getElementById("botonADD").setAttribute('onclick','Gestion_'+this.entidad+'.createForm_ADD()');
+            document.getElementById("botonSEARCH").setAttribute('onclick','Gestion_'+this.entidad+'.createForm_SEARCH()');
+            document.getElementById("botonADD").innerText = 'ADD';
+            document.getElementById("botonSEARCH").innerText = 'SEARCH';
+        }
     }
 
     mostrarTitulos(){
 
-        this.ponerbotonesaddysearch();
+        this.ponerbotonesaddysearch(); // comprobar si ya existen
 
-        let cabecera = document.createElement('thead');
-    
-        let textolineatitulos = '<tr>';
-    
-        for (let atributo in this.columnasamostrar){
-    
-            textolineatitulos += '<th class="'+traduccion[this.columnasamostrar[atributo]]+'">'+traduccion[this.columnasamostrar[atributo]]+'</th>';
-    
+        if (document.getElementById("titulostablacabecera")){
+
+            return document.createElement('a');
         }
-    
-        textolineatitulos += '<th>Editar</th><th>Borrar</th><th>Detalle</th>';
-    
-        textolineatitulos += '</tr>';
-    
-        cabecera.innerHTML = textolineatitulos;
-    
-        return cabecera;
+        else{
+
+            let cabecera = document.createElement('thead');
+
+            cabecera.id = "titulostablacabecera";
+        
+            let textolineatitulos = '<tr>';
+        
+            for (let atributo in this.columnasamostrar){
+        
+                textolineatitulos += '<th class="'+traduccion[this.columnasamostrar[atributo]]+'">'+traduccion[this.columnasamostrar[atributo]]+'</th>';
+        
+            }
+        
+            textolineatitulos += '<th>Editar</th><th>Borrar</th><th>Detalle</th>';
+        
+            textolineatitulos += '</tr>';
+        
+            cabecera.innerHTML = textolineatitulos;
+        
+            return cabecera;
+        
+        }
     
     }
 
     mostrarDatos(){
 
-        let cuerpo = document.createElement('tbody');
-    
-        let textolineadatos = '';
-    
-        for (let i=0;i<this.datosfilas.length;i++){
-    
-            textolineadatos += '<tr>';
-    
-            //bucle recorra todos los atributos y construya string para pasar como argumento a las funciones de formularios
-            let datosfuncion = '';
-    
-            for (let clave in this.datosfilas[i]){
-    
-                datosfuncion += "'"+this.datosfilas[i][clave]+"',";
-    
-                if (this.columnasamostrar.includes(clave)){
-    
-                    textolineadatos += '<td>'+this.datosfilas[i][clave]+'</td>';
-    
-                }
-            }
-    
-            datosfuncion = datosfuncion.substring(0, datosfuncion.length - 1);
-    
-            // crear los td para cada boton de llamada a funcion de formulario de accion (EDIT, DELETE O SHOWCURRENT)
-            // las funciones deberian llamarse createForm+_ACCION+'_entidad'()
-            //let lineaedit = '<td><a onclick="createForm_EDIT_'+entidad+'('+datosfuncion+');">Editar</a></td>';
-            //let lineaedit = '<td><a onclick=\"alert();\">Editar</a></td>';
-    
-            let lineaedit = this.crearboton('EDIT', datosfuncion);
-            let lineadelete = this.crearboton('DELETE', datosfuncion);
-            let lineashowcurrent = this.crearboton('SHOWCURRENT', datosfuncion);
-    
-            textolineadatos += lineaedit+lineadelete+lineashowcurrent;
-    
-            textolineadatos += '</tr>';
-    
+        if (document.getElementById("muestradatostabla")){
+            //retornar elemento neutro a incluir en el html
         }
+        else{
+            let cuerpo = document.createElement('tbody');
+            cuerpo.id = "muestradatostabla";
         
-        cuerpo.innerHTML = textolineadatos;
-    
-        return cuerpo;
+            let textolineadatos = '';
+        
+            for (let i=0;i<this.datosfilas.length;i++){
+        
+                textolineadatos += '<tr>';
+        
+                //bucle recorra todos los atributos y construya string para pasar como argumento a las funciones de formularios
+                let datosfuncion = '';
+        
+                for (let clave in this.datosfilas[i]){
+        
+                    datosfuncion += "'"+this.datosfilas[i][clave]+"',";
+        
+                    if (this.columnasamostrar.includes(clave)){
+        
+                        textolineadatos += '<td>'+this.datosfilas[i][clave]+'</td>';
+        
+                    }
+                }
+        
+                datosfuncion = datosfuncion.substring(0, datosfuncion.length - 1);
+        
+                // crear los td para cada boton de llamada a funcion de formulario de accion (EDIT, DELETE O SHOWCURRENT)
+        
+                let lineaedit = this.crearboton('EDIT', datosfuncion);
+                let lineadelete = this.crearboton('DELETE', datosfuncion);
+                let lineashowcurrent = this.crearboton('SHOWCURRENT', datosfuncion);
+        
+                textolineadatos += lineaedit+lineadelete+lineashowcurrent;
+        
+                textolineadatos += '</tr>';
+        
+            }
+            
+            cuerpo.innerHTML = textolineadatos;
+        
+            return cuerpo;
+        
+        }
     
     }
 
@@ -105,20 +125,23 @@ class GestionEntidad {
     mostrartabla(){
 
         this.mostrarTituloTabla();
-    
-        let tablaalumnos = document.createElement('table');
-        tablaalumnos.id = 'tabladatosalumnos';
-        tablaalumnos.border_width = "5px";
         
-        document.getElementById('id_tabla_datos').appendChild(tablaalumnos);
+        if (document.getElementById("tabladatosalumnos")){
+        }
+        else{
+            let tablaalumnos = document.createElement('table');
+            tablaalumnos.id = 'tabladatosalumnos';
+            tablaalumnos.border_width = "5px";
+            document.getElementById('id_tabla_datos').appendChild(tablaalumnos);
+        }
     
         let cabeceratabla = this.mostrarTitulos();
     
-        tablaalumnos.appendChild(cabeceratabla);
+        document.getElementById("tabladatosalumnos").appendChild(cabeceratabla); // comprobar si ya existe
     
         let cuerpotabla = this.mostrarDatos();
     
-        tablaalumnos.appendChild(cuerpotabla);
+        document.getElementById("tabladatosalumnos").appendChild(cuerpotabla);
     
     }
 
@@ -167,6 +190,47 @@ class GestionEntidad {
         // NO NECESARIO, YA VALIDAMOS CADA CAMPO
         //document.getElementById('div_error_'+campos[i].id).style.display = 'none';
         };
+    }
+
+    static peticionBackGeneral(formulario, controlador, action, datosextra=null){
+
+        var datos;
+        
+        if (formulario === ''){
+            datos = new FormData();
+        }
+        else{
+            formulario = document.getElementById(formulario);
+            datos = new FormData(formulario);
+        }
+    
+        datos.append('controlador', controlador);
+        datos.append('action', action);
+    
+        if (datosextra==null){}
+        else{
+            for(var clave in datosextra){
+                datos.append(clave, datosextra[clave]);
+            }
+        }
+        
+        return new Promise(function(resolve) { 
+            $.ajax({
+                type :"POST",
+                url : "http://193.147.87.202/Back/index.php",
+                data : datos,
+                processData : false,
+                contentType : false,
+            })
+            .done(res => {
+                resolve(res);
+            })
+            .fail(res => {
+                alert('error : '+res.status);
+            })
+    
+        });
+    
     }
 
     

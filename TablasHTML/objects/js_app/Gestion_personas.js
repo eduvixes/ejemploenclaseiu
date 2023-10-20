@@ -285,7 +285,7 @@ class Gestion_personas extends GestionEntidad{
     }
 
     static createForm_SEARCH(){
-        alert('SEARCH personas');
+        this.SEARCH();
     }
 
     //-----------------------------------------------------------------------------
@@ -326,7 +326,7 @@ class Gestion_personas extends GestionEntidad{
     // acciones a back
 
     static ADD(){
-        alert ('llamada a back');
+        
     }
 
     static EDIT(){
@@ -337,8 +337,11 @@ class Gestion_personas extends GestionEntidad{
         alert ('llamada a back');
     }
 
-    static SEARCH(){
-        alert ('llamada a back');
+    static async SEARCH(){
+        await this.peticionBackGeneral('', 'persona', 'SEARCH')
+        .then((respuesta) => {
+            let persona = new Gestion_personas('personas',respuesta,Array('dni','nombre_persona')); persona.mostrartabla();
+        });
     }
 
     //-----------------------------------------------------------------------------
