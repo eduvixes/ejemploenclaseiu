@@ -292,13 +292,22 @@ class Gestion_personas extends GestionEntidad{
     // submits
     static comprobar_submit(){
         alert('paso por comprobar submit');
-        return (
-            this.comprobar_dni() &&
-            this.comprobar_nombre_persona() &&
-            this.comprobar_apellidos_persona() &&
-            this.comprobar_direccion_persona() &&
-            this.comprobar_foto_persona()
+
+        let valor = this.comprobar_dni();
+        let valor1 = this.comprobar_nombre_persona();
+        let valor2 = this.comprobar_apellidos_persona();
+        let valor3 = this.comprobar_direccion_persona();
+        let valor4 = this.comprobar_foto_persona();
+
+        let resultado = (
+            valor &&
+            valor1 &&
+            valor2 &&
+            valor3 &&
+            valor4 
         );
+
+        return resultado;
         
     }
 
@@ -357,7 +366,7 @@ class Gestion_personas extends GestionEntidad{
         }
         else{
             //modificacion parametros texto error
-            DOM_class.mostrardivmensajes('nombre_persona','KO_nombre_persona_tam_max');
+            DOM_class.mostrardivmensajeserrordebajo('nombre_persona','KO_nombre_persona_tam_max');
 
             //salir ejecucion con false
             return false;

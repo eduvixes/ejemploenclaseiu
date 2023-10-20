@@ -165,7 +165,7 @@ class GestionEntidad {
             }
         // poner todos los campos como required
         // NO NECESARIO, YA VALIDAMOS CADA CAMPO
-        document.getElementById('div_error_'+campos[i].id).style.display = 'none';
+        //document.getElementById('div_error_'+campos[i].id).style.display = 'none';
         };
     }
 
