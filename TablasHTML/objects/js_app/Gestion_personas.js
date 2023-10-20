@@ -285,7 +285,17 @@ class Gestion_personas extends GestionEntidad{
     }
 
     static createForm_SEARCH(){
-        this.SEARCH();
+         // se rellena el action del formulario
+         document.getElementById('IU_form').action = 'javascript:Gestion_personas.SEARCH();';
+         document.getElementById('IU_form').setAttribute('onsubmit', 'return Gestion_personas.comprobar_submit_SEARCH();');
+         document.getElementById('id_submit').value = 'SEARCH';
+
+        // para actualizar idioma despues de incluir la imagen
+        //setLang();
+
+        // se muestra el formulario
+        document.getElementById('div_IU_form').style.display = 'block';
+
     }
 
     //-----------------------------------------------------------------------------
@@ -313,13 +323,14 @@ class Gestion_personas extends GestionEntidad{
 
     static comprobar_submit_SEARCH(){
         alert('paso por comprobar submit search');
-        return (
+        /*return (
             this.comprobar_dni_SEARCH() &&
             this.comprobar_nombre_persona_SEARCH() &&
 
 
             this.comprobar_foto_persona_SEARCH()
-        );
+        );*/
+        return true;
     }
 
     //-----------------------------------------------------------------------------
@@ -338,9 +349,9 @@ class Gestion_personas extends GestionEntidad{
     }
 
     static async SEARCH(){
-        await this.peticionBackGeneral('', 'persona', 'SEARCH')
+        await this.peticionBackGeneral('IU_form', 'persona', 'SEARCH')
         .then((respuesta) => {
-            let persona = new Gestion_personas('personas',respuesta,Array('dni','nombre_persona')); persona.mostrartabla();
+            let persona = new Gestion_personas('personas',respuesta['resource'],Array('dni','nombre_persona')); persona.mostrartabla();
         });
     }
 
