@@ -5,6 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon" />
 	<title>Javi</title>
+
+	<link rel="stylesheet" href="./css/menu.css">
+
 	<script type="text/javascript" src="./locales/textos_ES.js"></script>
 	<script type="text/javascript" src="./js_core/DOM_class.js"></script>
 	<script type="text/javascript" src="./locales/idiomas.js"></script>
@@ -19,62 +22,68 @@
 		<p id="id_texto_titulo_tabla">pagina de prueba practica 2 iu</p>
 	</div>
 	<div><p><button onclick="test('personas');">TEST</button></p></div>
-	<div id="div_mensajes_pagina" class="formato_mensajes_pagina">
-		<p id="texto_mensaje"></p>
-		<p onclick="DOM_class.cerrar_div_mensajes();">Cerrar</p>
+	<div class = "div_mensajes_accion" id="div_mensajes_pagina" class="formato_mensajes_pagina">
+		<div class = "contenidomensajes_accion" >
+			<p id="texto_mensaje"></p>
+			<p onclick="DOM_class.cerrar_div_mensajes();">Cerrar</p>
+		</div>
 	</div>
 
 	<div id="id_tabla_datos">
         
     </div>
 	
-	<div id='div_IU_form'>
+	<div class = "div_IU_form" id='div_IU_form'>
+		<div class = "contenidoForm" id="contenidoForm">
+			<div class = "class_titulo_form">
+				<spam class = "class_contenido_titulo_form" >titulo para el formulario de este tamano</spam>
+			</div>
+			<form id='IU_form' name='IU_form' method='POST' enctype="multipart/form-data" class="formulario">
+				
+				<label class="dni"></label>
+				</label>
+				<input type='text' id='dni' name='dni'></input>
+				<div id="div_error_dni" class="errorcampo"><a id="error_dni"></a></div>
+				<br>
+				<script>document.querySelector('.dni').innerHTML=traduccion['dni'];</script>
+				
+				<label class="nombre_persona">Nombre de pila</label>
+				<input type='text' id='nombre_persona' name='nombre_persona'></input>
+				<div id="div_error_nombre_persona" class="errorcampo"><a id="error_nombre_persona"></a></div>
+				<br>
+				
+				<label class="apellidos_persona">apellidos</label>
+				<input type='text' id='apellidos_persona' name='apellidos_persona'></input>
+				<div id="div_error_apellidos_persona" class="errorcampo"><a id="error_apellidos_persona"></a></div>
+				<br>
+				
+				<label class="fechaNacimiento_persona">Fecha de Nacimiento</label>
+				<input type='date' id='fechaNacimiento_persona' name='fechaNacimiento_persona'></input>
+				
+				<br>
+				<label class="direccion_persona">Dirección Postal</label>
+				<input type='text' id='direccion_persona' name='direccion_persona'></input>
+				<div id="div_error_direccion_persona" class="errorcampo"><a id="error_direccion_persona"></a></div>
+				<br>
+				<label class="telefono_persona">Teléfono Persona</label>
+				<input type='text' id='telefono_persona' name='telefono_persona'></input>
+				
+				<br>
+				<label class="email_persona">Correo Electronico</label>
+				<input type='text' id='email_persona' name='email_persona'></input>
+				
+				<br>
+				<label class="foto_persona">Foto Persona</label>
+				<input type='file' id='foto_persona' name='foto_persona'></input>
 
-		<form id='IU_form' name='IU_form' method='POST' enctype="multipart/form-data">
-			
-			<label class="dni"></label>
-			</label>
-			<input type='text' id='dni' name='dni'></input>
-			<div id="div_error_dni" class="errorcampo"><a id="error_dni"></a></div>
-			<br>
-			<script>document.querySelector('.dni').innerHTML=traduccion['dni'];</script>
-			
-			<label class="nombre_persona">Nombre de pila</label>
-			<input type='text' id='nombre_persona' name='nombre_persona'></input>
-			<div id="div_error_nombre_persona" class="errorcampo"><a id="error_nombre_persona"></a></div>
-			<br>
-			
-			<label class="apellidos_persona">apellidos</label>
-			<input type='text' id='apellidos_persona' name='apellidos_persona'></input>
-			<div id="div_error_apellidos_persona" class="errorcampo"><a id="error_apellidos_persona"></a></div>
-			<br>
-			
-			<label class="fechaNacimiento_persona">Fecha de Nacimiento</label>
-			<input type='date' id='fechaNacimiento_persona' name='fechaNacimiento_persona'></input>
-			
-			<br>
-			<label class="direccion_persona">Dirección Postal</label>
-			<input type='text' id='direccion_persona' name='direccion_persona'></input>
-			<div id="div_error_direccion_persona" class="errorcampo"><a id="error_direccion_persona"></a></div>
-			<br>
-			<label class="telefono_persona">Teléfono Persona</label>
-			<input type='text' id='telefono_persona' name='telefono_persona'></input>
-			
-			<br>
-			<label class="email_persona">Correo Electronico</label>
-			<input type='text' id='email_persona' name='email_persona'></input>
-			
-			<br>
-			<label class="foto_persona">Foto Persona</label>
-			<input type='file' id='foto_persona' name='foto_persona'></input>
-
-			<br>
-			<input type="submit" id='id_submit' value="" />
-			
-			<br>
-			<button class="btnVolver titulo_volver" onclick="window.location.href = 'Gestion_personas.html';">Volver</button>
-			
-		</form>
+				<br>
+				<input type="submit" id='id_submit' value="" />
+				
+				<br>
+				<button class="btnVolver titulo_volver" onclick="window.location.href = 'Gestion_personas.html';">Volver</button>
+				
+			</form>
+		</div>
 	
 	</div>
 

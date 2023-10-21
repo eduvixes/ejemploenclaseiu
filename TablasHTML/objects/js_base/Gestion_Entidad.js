@@ -124,24 +124,25 @@ class GestionEntidad {
     
     mostrartabla(){
 
+        document.getElementById('id_tabla_datos').innerHTML = ''; // inicioalizo la tabla de datos a vacio
+
         this.mostrarTituloTabla();
         
-        if (document.getElementById("tabladatosalumnos")){
-        }
-        else{
-            let tablaalumnos = document.createElement('table');
-            tablaalumnos.id = 'tabladatosalumnos';
-            tablaalumnos.border_width = "5px";
-            document.getElementById('id_tabla_datos').appendChild(tablaalumnos);
-        }
+        let tablaalumnos = document.createElement('table');
+        tablaalumnos.id = 'tabladatosalumnos';
+        tablaalumnos.border_width = "5px";
+        document.getElementById('id_tabla_datos').appendChild(tablaalumnos);
+        
     
         let cabeceratabla = this.mostrarTitulos();
     
-        document.getElementById("tabladatosalumnos").appendChild(cabeceratabla); // comprobar si ya existe
+        document.getElementById("tabladatosalumnos").appendChild(cabeceratabla); 
     
         let cuerpotabla = this.mostrarDatos();
     
         document.getElementById("tabladatosalumnos").appendChild(cuerpotabla);
+
+        document.getElementById("div_IU_form").style.display = 'none';
     
     }
 
@@ -186,9 +187,11 @@ class GestionEntidad {
                     campos[i].removeAttribute(atributo);
                 }
             }
-        // poner todos los campos como required
-        // NO NECESARIO, YA VALIDAMOS CADA CAMPO
-        //document.getElementById('div_error_'+campos[i].id).style.display = 'none';
+        // poner todos los campos de div de error a none
+            if (eval(document.getElementById('div_error_'+campos[i].id))){
+                document.getElementById('div_error_'+campos[i].id).style.display = 'none';
+            }
+
         };
     }
 

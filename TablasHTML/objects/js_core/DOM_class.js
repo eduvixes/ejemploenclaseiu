@@ -13,11 +13,10 @@ class DOM_class{
         document.getElementById("div_mensajes_pagina").style.display = "none";
     }
 
-    static mostrardivmensajes(id,codigoerror){
+    static mostrardivmensajes(codigoerror){
         //cambiar color bordes por el id
         document.getElementById('texto_mensaje').innerText = traduccion[codigoerror];
         document.getElementById("div_mensajes_pagina").style.display = "block";
-        DOM_class.mostrarerrorvalor(id);
     }
 
     static mostrardivmensajeserrordebajo(id,codigoerror){

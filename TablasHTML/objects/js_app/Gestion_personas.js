@@ -217,13 +217,11 @@ class Gestion_personas extends GestionEntidad{
     static resetearformpersona() {
 
         GestionEntidad.resetearForm();
-
-        //poner todos required
     
         //Modificaciones particulares entidad
-        document.getElementById('div_error_nombre_persona').style.display = 'none';
-        document.getElementById('div_error_apellidos_persona').style.display = 'none';
-        document.getElementById('div_error_direccion_persona').style.display = 'none';
+        //document.getElementById('div_error_nombre_persona').style.display = 'none';
+        //document.getElementById('div_error_apellidos_persona').style.display = 'none';
+        //document.getElementById('div_error_direccion_persona').style.display = 'none';
     }
 
     static createForm_ADD(){
@@ -302,7 +300,7 @@ class Gestion_personas extends GestionEntidad{
     // submits
     static comprobar_submit(){
         alert('paso por comprobar submit');
-
+/*
         let valor = this.comprobar_dni();
         let valor1 = this.comprobar_nombre_persona();
         let valor2 = this.comprobar_apellidos_persona();
@@ -317,7 +315,8 @@ class Gestion_personas extends GestionEntidad{
             valor4 
         );
 
-        return resultado;
+        return resultado;*/
+        return true;
         
     }
 
@@ -336,8 +335,17 @@ class Gestion_personas extends GestionEntidad{
     //-----------------------------------------------------------------------------
     // acciones a back
 
-    static ADD(){
-        
+    static async ADD(){
+        await this.peticionBackGeneral('IU_form', 'persona', 'ADD')
+        .then((respuesta) => {
+            if (respuesta['ok']){
+                this.resetearformpersona();
+                this.SEARCH();
+            }
+            else{
+                DOM_class.mostrardivmensajes(respuesta['code']);
+            }
+        });
     }
 
     static EDIT(){
@@ -366,7 +374,7 @@ class Gestion_personas extends GestionEntidad{
 
     static comprobar_nombre_persona(){
 
-        if (validacionesatomicas.size_minimo('nombre_persona',6)){
+    /*    if (validacionesatomicas.size_minimo('nombre_persona',6)){
         }
         else{
             //modificacion parametros texto error
@@ -385,14 +393,14 @@ class Gestion_personas extends GestionEntidad{
             //salir ejecucion con false
             return false;
         }
-
+*/
         DOM_class.mostrarexitovalor('nombre_persona');
         return true;
 
     }
 
     static comprobar_nombre_persona_SEARCH(){
-
+/*
         if (validacionesatomicas.size_maximo('nombre_persona',50)){   
         }
         else{
@@ -403,14 +411,14 @@ class Gestion_personas extends GestionEntidad{
             //salir ejecucion con false
             return false;
         }
-
+*/
         DOM_class.mostrarexitovalor('nombre_persona');
         return true;
 
     }
 
     static comprobar_apellidos_persona(){
-
+/*
         if (validacionesatomicas.size_minimo('apellidos_persona',6)){
         }
         else{
@@ -427,7 +435,7 @@ class Gestion_personas extends GestionEntidad{
             //salir ejecucion con false
             return false;
         }
-
+*/
         DOM_class.mostrarexitovalor('apellidos_persona');
         return true;
     }
@@ -437,7 +445,7 @@ class Gestion_personas extends GestionEntidad{
     }
 
     static comprobar_direccion_persona(){
-
+/*
         if (validacionesatomicas.size_minimo('direccion_persona',20)){
         }
         else{
@@ -457,14 +465,18 @@ class Gestion_personas extends GestionEntidad{
             //salir ejecucion con false
             return false;
         }
-
+*/
         DOM_class.mostrarexitovalor('direccion_persona');
         return true;
 
     }
 
+    static comprobar_telefono_persona(){
+        return true;
+    }
+
     static comprobar_foto_persona(){
-        alert('validacion foto');
+
         return true;
     }
 

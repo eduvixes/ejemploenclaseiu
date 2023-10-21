@@ -40,3 +40,74 @@
    #menu ul li:hover {
     background:#5b78a7;
    }
+
+   .div_IU_form {
+	width:100%; /*Toma el 100% del ancho de la página*/
+	height:100%; /*Toma el 100% del alto de la página*/
+	position:fixed; /*Con este código hacemos que el contenedor se mantenga en la pantalla y para que tome las dimensiones del body y no de la entrada*/
+	/*background-color: rgba(1, 1, 1, 0.95); /*Color de fondo, incluye opacidad del 90%*/
+	top:0; /*Position superior*/
+	left:0; /*Posición lateral*/
+	z-index:1001; /*Evitamos que algún elemento del blog sobreponga la ventana modal*/
+}
+
+    .contenidoForm { 
+        background: rgba(217, 213, 213, 0.95);
+        position: absolute;
+        z-index: 20;
+        border-radius: 5px;
+        width: 60%;
+        height: 78.5%;
+        margin-top: 6%;
+        margin-left: 19%;
+        border: 1px;
+        border-style: solid;
+}
+
+    .formulario{
+        top: 20px;
+        position: relative;
+        left: 20px;
+}
+
+.div_mensajes_accion {
+	width:100%; /*Toma el 100% del ancho de la página*/
+	height:100%; /*Toma el 100% del alto de la página*/
+	position:absolute; /*Con este código hacemos que el contenedor se mantenga en la pantalla y para que tome las dimensiones del body y no de la entrada*/
+	/*background-color: rgba(1, 1, 1, 0.95); /*Color de fondo, incluye opacidad del 90%*/
+	top:0; /*Position superior*/
+	left:0; /*Posición lateral*/
+	z-index:1102; /*Evitamos que algún elemento del blog sobreponga la ventana modal*/
+}
+
+.contenidomensajes_accion { 
+    background: rgba(217, 213, 213, 0.95);
+    position: relative;
+    z-index: 20;
+    border-radius: 5px;
+    width: 30%;
+    height: 60%;
+    margin-top: 6%;
+    margin-left: 19%;
+    border: 1px;
+    border-style: solid;
+}
+
+.class_titulo_form{
+    position: relative;
+    height: 100px;
+    width: 100%;
+
+    background: #ffff99;
+    color: #333;
+}
+
+.class_contenido_titulo_form{
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    font-weight: bold;
+}
+
