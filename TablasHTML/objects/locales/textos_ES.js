@@ -14,6 +14,10 @@ let textos_ES={
     // acciones
 
     "ADD":"Añadir",
+    "titulo_form_ADD_persona":"Incorporar una persona",
+    "titulo_form_EDIT_persona":"Modicar persona",
+    "titulo_form_DELETE_persona":"Confirmar borrar una persona",
+    "titulo_form_SEARCH_persona":"Buscar una persona",
 
     // general pagina
     "titulo_pagina_personas":"Gestión de Personas",
@@ -27,6 +31,9 @@ let textos_ES={
     //mensajes error direccion_persona
     "KO_direccion_persona_tam_min":"direccion persona peta minimo",
     "KO_direccion_persona_tam_max":"direccion persona peta maximo",
+
+    // mensajes accion
+    "dni_es_nulo_KO":"Debe indicarse un dni"
 };
 
 let traduccion = textos_ES;

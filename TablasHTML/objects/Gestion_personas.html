@@ -17,7 +17,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
-<body onload="DOM_class.inicializa_pagina();personas = new Gestion_personas('personas',datospersonas,Array('dni','nombre_persona')); personas.mostrartabla();">
+<body onload="DOM_class.inicializa_pagina();Gestion_personas.SEARCH();">
 	<div id="div_titulo_pagina" class="formato_titulo_pagina">
 		<p id="id_texto_titulo_tabla">pagina de prueba practica 2 iu</p>
 	</div>
@@ -59,22 +59,27 @@
 				
 				<label class="fechaNacimiento_persona">Fecha de Nacimiento</label>
 				<input type='date' id='fechaNacimiento_persona' name='fechaNacimiento_persona'></input>
+				<div id="div_error_fechaNacimiento_persona" class="errorcampo"><a id="error_fechaNacimiento_persona"></a></div>
 				
 				<br>
 				<label class="direccion_persona">Dirección Postal</label>
 				<input type='text' id='direccion_persona' name='direccion_persona'></input>
 				<div id="div_error_direccion_persona" class="errorcampo"><a id="error_direccion_persona"></a></div>
 				<br>
+
 				<label class="telefono_persona">Teléfono Persona</label>
 				<input type='text' id='telefono_persona' name='telefono_persona'></input>
+				<div id="div_error_telefono_persona" class="errorcampo"><a id="error_telefono_persona"></a></div>
 				
 				<br>
 				<label class="email_persona">Correo Electronico</label>
 				<input type='text' id='email_persona' name='email_persona'></input>
+				<div id="div_error_email_persona" class="errorcampo"><a id="error_email_persona"></a></div>
 				
 				<br>
 				<label class="foto_persona">Foto Persona</label>
 				<input type='file' id='foto_persona' name='foto_persona'></input>
+				<div id="div_error_foto_persona" class="errorcampo"><a id="error_foto_persona"></a></div>
 
 				<br>
 				<input type="submit" id='id_submit' value="" />
