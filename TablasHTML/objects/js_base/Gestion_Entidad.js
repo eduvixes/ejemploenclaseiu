@@ -220,7 +220,7 @@ class GestionEntidad {
         return new Promise(function(resolve) { 
             $.ajax({
                 type :"POST",
-                url : "http://193.147.87.202/Back/index.php",
+                url : "http://193.147.87.202/ET2/index.php",
                 data : datos,
                 processData : false,
                 contentType : false,
