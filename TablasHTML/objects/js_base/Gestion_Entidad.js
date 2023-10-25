@@ -167,6 +167,7 @@ class GestionEntidad {
     }
 
     static resetearForm(){
+
         //obtener campos del formulario
         let campos = document.forms['IU_form'].elements;
         //recorrer todos los campos
@@ -179,7 +180,7 @@ class GestionEntidad {
             //obtener los atributos del campo
             let atributos = campos[i].getAttributeNames;
             //definir los eventos a quitar
-            let eventos = Array('onblur','onclick','onchange');
+            let eventos = Array('onblur','onclick','onchange','readonly');
             for(let atributo in atributos){
                 if (atributo in eventos){
                     //si el evento existe como atributo eliminarlo
@@ -187,12 +188,30 @@ class GestionEntidad {
                     campos[i].removeAttribute(atributo);
                 }
             }
+
+        // poner todos los campos y labels visibles
+            if (eval(document.getElementById(campos[i].id))){ // si existe el elemento por su id
+                //document.getElementById(campos[i].id).style.display = 'block';
+            }
+            if (eval(document.querySelector("."+campos[i].id))){ // si existe el elemento por su class
+               //document.querySelector("."+campos[i].id).style.display = 'block';
+            }
+
         // poner todos los campos de div de error a none
             if (eval(document.getElementById('div_error_'+campos[i].id))){
                 document.getElementById('div_error_'+campos[i].id).style.display = 'none';
             }
 
         };
+    }
+
+    static ponercamposreadonly(){
+        //obtener campos del formulario
+        let campos = document.forms['IU_form'].elements;
+        //recorrer todos los campos
+        for (let i=0;i<campos.length;i++) {
+            campos[i].setAttribute("readonly", true);
+        }
     }
 
     static peticionBackGeneral(formulario, controlador, action, datosextra=null){
