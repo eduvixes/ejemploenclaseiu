@@ -13,8 +13,8 @@ class Gestion_personas extends GestionEntidad{
     static createForm_ADD(){
 
         // resetear el formulario
-        this.resetearformpersona();
-
+        //this.resetearformpersona();
+        this.recargarform();
         // rellenar titulo formulario
         document.querySelector(".class_contenido_titulo_form").innerHTML = traduccion["titulo_form_ADD_persona"]; 
 
@@ -47,6 +47,9 @@ class Gestion_personas extends GestionEntidad{
 
         document.getElementById('nueva_foto_persona').setAttribute('onblur','Gestion_personas.comprobar_nueva_foto_persona()');
         document.getElementById("foto_persona").setAttribute("readonly",true);
+        document.getElementById("foto_persona").style.display = 'none';
+        document.querySelector(".foto_persona").style.display = 'none';
+        document.getElementById("link_foto_persona").style.display = 'none';
 
         document.getElementById('id_submit').value = 'ADD';
 
@@ -60,8 +63,8 @@ class Gestion_personas extends GestionEntidad{
 
     static createForm_EDIT(dni, nombre_persona, apellidos_persona, fechaNacimiento_persona, direccion_persona, telefono_persona, email_persona, foto_persona){
         // resetear el formulario
-        this.resetearformpersona();
-
+        //this.resetearformpersona();
+        this.recargarform();
         // rellenar titulo formulario
         document.querySelector(".class_contenido_titulo_form").innerHTML = traduccion["titulo_form_EDIT_persona"]; 
 
@@ -94,6 +97,7 @@ class Gestion_personas extends GestionEntidad{
         document.getElementById('email_persona').value = email_persona;
 
         document.getElementById('foto_persona').value = foto_persona;
+        document.getElementById('link_foto_persona').setAttribute('href','http://193.147.98.202/ET2/filesuploaded/files_foto_persona/'+foto_persona);
         document.getElementById('foto_persona').setAttribute("readonly",true);
 
         document.getElementById('nueva_foto_persona').setAttribute('onblur','Gestion_personas.comprobar_nueva_foto_persona()');
@@ -109,7 +113,8 @@ class Gestion_personas extends GestionEntidad{
 
     static createForm_DELETE(dni, nombre_persona, apellidos_persona, fechaNacimiento_persona, direccion_persona, telefono_persona, email_persona, foto_persona){
         // resetear el formulario
-        this.resetearformpersona();
+        //this.resetearformpersona();
+        this.recargarform();
 
         // rellenar titulo formulario
         document.querySelector(".class_contenido_titulo_form").innerHTML = traduccion["titulo_form_DELETE_persona"]; 
@@ -259,7 +264,8 @@ class Gestion_personas extends GestionEntidad{
         await this.peticionBackGeneral('IU_form', 'persona', 'ADD')
         .then((respuesta) => {
             if (respuesta['ok']){
-                this.resetearformpersona();
+                //this.resetearformpersona();
+                this.recargarform();
                 this.SEARCH();
             }
             else{
@@ -297,7 +303,8 @@ class Gestion_personas extends GestionEntidad{
     static async SEARCH(){
         await this.peticionBackGeneral('IU_form', 'persona', 'SEARCH')
         .then((respuesta) => {
-            this.resetearformpersona();
+            //this.resetearformpersona();
+            this.recargarform();
             let persona = new Gestion_personas('personas',respuesta['resource'],Array('dni','nombre_persona')); persona.mostrartabla();
         });
     }
@@ -480,4 +487,59 @@ class Gestion_personas extends GestionEntidad{
         return true;
     }
 
+
+    static recargarform(){
+
+        document.getElementById("IU_form").innerHTML=`
+
+        <label class="dni"></label>
+
+        <input type='text' id='dni' name='dni'></input>
+        <div id="div_error_dni" class="errorcampo"><a id="error_dni"></a></div>
+        <br>
+        <script>document.querySelector('.dni').innerHTML=traduccion['dni'];</script>
+        
+        <label class="nombre_persona">Nombre de pila</label>
+        <input type='text' id='nombre_persona' name='nombre_persona'></input>
+        <div id="div_error_nombre_persona" class="errorcampo"><a id="error_nombre_persona"></a></div>
+        <br>
+        
+        <label class="apellidos_persona">apellidos</label>
+        <input type='text' id='apellidos_persona' name='apellidos_persona'></input>
+        <div id="div_error_apellidos_persona" class="errorcampo"><a id="error_apellidos_persona"></a></div>
+        <br>
+        
+        <label class="fechaNacimiento_persona">Fecha de Nacimiento</label>
+        <input type='date' id='fechaNacimiento_persona' name='fechaNacimiento_persona'></input>
+        <div id="div_error_fechaNacimiento_persona" class="errorcampo"><a id="error_fechaNacimiento_persona"></a></div>
+        
+        <br>
+        <label class="direccion_persona">Dirección Postal</label>
+        <input type='text' id='direccion_persona' name='direccion_persona'></input>
+        <div id="div_error_direccion_persona" class="errorcampo"><a id="error_direccion_persona"></a></div>
+        <br>
+
+        <label class="telefono_persona">Teléfono Persona</label>
+        <input type='text' id='telefono_persona' name='telefono_persona'></input>
+        <div id="div_error_telefono_persona" class="errorcampo"><a id="error_telefono_persona"></a></div>
+        
+        <br>
+        <label class="email_persona">Correo Electronico</label>
+        <input type='text' id='email_persona' name='email_persona'></input>
+        <div id="div_error_email_persona" class="errorcampo"><a id="error_email_persona"></a></div>
+        
+        <br>
+        <label class="foto_persona">Foto Persona</label>
+        <input type='text' id='foto_persona' name='foto_persona'></input>
+        <a id="link_foto_persona" href="http://193.147.87.202/ET2/filesuploaded/files_foto_persona/Arquitectura.jpg"><img src=./iconos/imagenfichero.jpg /></a>
+        <label class="nueva_foto_persona">Nueva Foto Persona</label>
+        <input type='file' id='nueva_foto_persona' name='nueva_foto_persona'></input>
+        <div id="div_error_foto_persona" class="errorcampo"><a id="error_foto_persona"></a></div>
+        <br>
+        <input type="submit" id='id_submit' value="" />
+        
+        `;
+
+       
+    }
 }

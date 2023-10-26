@@ -18,6 +18,7 @@ let textos_ES={
     "titulo_form_EDIT_persona":"Modicar persona",
     "titulo_form_DELETE_persona":"Confirmar borrar una persona",
     "titulo_form_SEARCH_persona":"Buscar una persona",
+    "titulo_form_SHOWCURRENT_persona":"Ver detalle de una persona",
 
     // general pagina
     "titulo_pagina_personas":"Gestión de Personas",
@@ -33,7 +34,8 @@ let textos_ES={
     "KO_direccion_persona_tam_max":"direccion persona peta maximo",
 
     // mensajes accion
-    "dni_es_nulo_KO":"Debe indicarse un dni"
+    "dni_es_nulo_KO":"Debe indicarse un dni",
+    "fechaNacimiento_persona_es_nulo_KO":"Debe indicarse una fecha de nacimiento"
 };
 
 let traduccion = textos_ES;

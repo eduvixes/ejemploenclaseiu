@@ -41,11 +41,11 @@
 			<form id='IU_form' name='IU_form' method='POST' enctype="multipart/form-data" class="formulario">
 				
 				<label class="dni"></label>
-				</label>
+
 				<input type='text' id='dni' name='dni'></input>
 				<div id="div_error_dni" class="errorcampo"><a id="error_dni"></a></div>
 				<br>
-				<script>document.querySelector('.dni').innerHTML=traduccion['dni'];</script>
+				<script>document.querySelector('.dni').innerHTML = traduccion['dni'];</script>
 				
 				<label class="nombre_persona">Nombre de pila</label>
 				<input type='text' id='nombre_persona' name='nombre_persona'></input>
@@ -79,16 +79,16 @@
 				<br>
 				<label class="foto_persona">Foto Persona</label>
 				<input type='text' id='foto_persona' name='foto_persona'></input>
+				<a id="link_foto_persona" href="http://193.147.87.202/ET2/filesuploaded/files_foto_persona/Arquitectura.jpg"><img src=./iconos/imagenfichero.jpg /></a>
 				<label class="nueva_foto_persona">Nueva Foto Persona</label>
 				<input type='file' id='nueva_foto_persona' name='nueva_foto_persona'></input>
 				<div id="div_error_foto_persona" class="errorcampo"><a id="error_foto_persona"></a></div>
-
 				<br>
 				<input type="submit" id='id_submit' value="" />
 				
 			</form>
 			<br>
-			<button class="btnVolver titulo_volver" onclick="window.location.href = 'Gestion_personas.html';">Volver</button>
+			<button class="btnVolver titulo_volver" onclick="DOM_class.cerrar_div_formulario()">Volver</button>
 		</div>
 	
 	</div>
