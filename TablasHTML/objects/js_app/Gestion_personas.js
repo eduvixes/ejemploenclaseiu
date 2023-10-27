@@ -10,7 +10,7 @@ class Gestion_personas extends GestionEntidad{
     //-----------------------------------------------------------------------------
     // formularios
 
-    static createForm_ADD(){
+    static async createForm_ADD(){
 
         // resetear el formulario
         //this.resetearformpersona();
@@ -45,11 +45,24 @@ class Gestion_personas extends GestionEntidad{
         document.getElementById('email_persona').setAttribute('onblur','Gestion_personas.comprobar_email_persona()');
         document.getElementById('email_persona').value = '';
 
-        document.getElementById('nueva_foto_persona').setAttribute('onblur','Gestion_personas.comprobar_nueva_foto_persona()');
+        document.getElementById('nuevo_foto_persona').setAttribute('onblur','Gestion_personas.comprobar_nueva_foto_persona()');
         document.getElementById("foto_persona").setAttribute("readonly",true);
         document.getElementById("foto_persona").style.display = 'none';
         document.querySelector(".foto_persona").style.display = 'none';
         document.getElementById("link_foto_persona").style.display = 'none';
+
+        await this.peticionBackGeneral('', 'area', 'SEARCH')
+        .then((respuesta) => {
+            console.log(respuesta);
+            let listaareas = respuesta['resource'];
+            listaareas.forEach(element => {
+                let opcion = document.createElement('option');
+                opcion.value = element['id_area'];
+                opcion.innerHTML = element['nombre_area'];
+                document.getElementById('area').append(opcion);
+            }); 
+        });
+
 
         document.getElementById('id_submit').value = 'ADD';
 
@@ -97,10 +110,10 @@ class Gestion_personas extends GestionEntidad{
         document.getElementById('email_persona').value = email_persona;
 
         document.getElementById('foto_persona').value = foto_persona;
-        document.getElementById('link_foto_persona').setAttribute('href','http://193.147.98.202/ET2/filesuploaded/files_foto_persona/'+foto_persona);
+        document.getElementById('link_foto_persona').setAttribute('href','http://193.147.87.202/ET2/filesuploaded/files_foto_persona/'+foto_persona);
         document.getElementById('foto_persona').setAttribute("readonly",true);
 
-        document.getElementById('nueva_foto_persona').setAttribute('onblur','Gestion_personas.comprobar_nueva_foto_persona()');
+        document.getElementById('nuevo_foto_persona').setAttribute('onblur','Gestion_personas.comprobar_nueva_foto_persona()');
 
         document.getElementById('id_submit').value = 'EDIT';
 
@@ -139,8 +152,9 @@ class Gestion_personas extends GestionEntidad{
         document.getElementById('email_persona').value = email_persona;
 
         document.getElementById('foto_persona').value = foto_persona;
-        document.querySelector(".nueva_foto_persona").style.display = 'none';
-        document.getElementById("nueva_foto_persona").style.display = 'none';
+        document.querySelector(".nuevo_foto_persona").style.display = 'none';
+        document.getElementById("nuevo_foto_persona").style.display = 'none';
+        document.getElementById("link_foto_persona").href += foto_persona;
 
         document.getElementById('id_submit').value = 'DELETE';
 
@@ -168,6 +182,7 @@ class Gestion_personas extends GestionEntidad{
 
         // rellenar titulo formulario
         document.querySelector(".class_contenido_titulo_form").innerHTML = traduccion["titulo_form_SEARCH_persona"]; 
+        this.recargarform();
         // se rellena el action del formulario
         document.getElementById('IU_form').action = 'javascript:Gestion_personas.SEARCH();';
         document.getElementById('IU_form').setAttribute('onsubmit', 'return Gestion_personas.comprobar_submit_SEARCH();');
@@ -190,8 +205,9 @@ class Gestion_personas extends GestionEntidad{
         
         document.getElementById('foto_persona').setAttribute('onblur','Gestion_personas.comprobar_foto_persona_SEARCH()');
 
-        document.querySelector(".nueva_foto_persona").style.display = 'none';
-        document.getElementById("nueva_foto_persona").style.display = 'none';
+        document.querySelector(".nuevo_foto_persona").style.display = 'none';
+        document.getElementById("nuevo_foto_persona").style.display = 'none';
+        document.getElementById('link_foto_persona').style.display = 'none';
 
         document.getElementById('id_submit').value = 'SEARCH';
 
@@ -215,7 +231,7 @@ class Gestion_personas extends GestionEntidad{
         let valor4 = this.comprobar_telefono_persona();
         let valor5 = this.comprobar_email_persona();
         let valor6 = this.comprobar_direccion_persona();
-        let valor7 = this.comprobar_nueva_foto_persona();
+        let valor7 = this.comprobar_nuevo_foto_persona();
 
         let resultado = (
             valor &&
@@ -241,7 +257,7 @@ class Gestion_personas extends GestionEntidad{
         let valor4 = this.comprobar_telefono_persona_SEARCH();
         let valor5 = this.comprobar_email_persona_SEARCH();
         let valor6 = this.comprobar_direccion_persona_SEARCH();
-        let valor7 = this.comprobar_nueva_foto_persona_SEARCH();
+        let valor7 = this.comprobar_nuevo_foto_persona_SEARCH();
 
         let resultado = (
             valor &&
@@ -306,6 +322,9 @@ class Gestion_personas extends GestionEntidad{
             //this.resetearformpersona();
             this.recargarform();
             let persona = new Gestion_personas('personas',respuesta['resource'],Array('dni','nombre_persona')); persona.mostrartabla();
+            if (respuesta['code'] == 'RECORDSET_VACIO'){
+                document.getElementById('muestradatostabla').innerHTML = 'no hay datos coincidentes con la busqueda';
+            }
         });
     }
 
@@ -479,16 +498,18 @@ class Gestion_personas extends GestionEntidad{
         return true;
     }
 
-    static comprobar_nueva_foto_persona(){
+    static comprobar_nuevo_foto_persona(){
         return true;
     }
 
-    static comprobar_nueva_foto_persona_SEARCH(){
+    static comprobar_nuevo_foto_persona_SEARCH(){
         return true;
     }
 
 
     static recargarform(){
+
+        document.getElementById("IU_form").innerHTML= '';
 
         document.getElementById("IU_form").innerHTML=`
 
@@ -529,16 +550,29 @@ class Gestion_personas extends GestionEntidad{
         <div id="div_error_email_persona" class="errorcampo"><a id="error_email_persona"></a></div>
         
         <br>
-        <label class="foto_persona">Foto Persona</label>
+        <label id="label_foto_persona" class="foto_persona">Foto Persona</label>
         <input type='text' id='foto_persona' name='foto_persona'></input>
-        <a id="link_foto_persona" href="http://193.147.87.202/ET2/filesuploaded/files_foto_persona/Arquitectura.jpg"><img src=./iconos/imagenfichero.jpg /></a>
-        <label class="nueva_foto_persona">Nueva Foto Persona</label>
-        <input type='file' id='nueva_foto_persona' name='nueva_foto_persona'></input>
+        <a id="link_foto_persona" href="http://193.147.87.202/ET2/filesuploaded/files_foto_persona/"><img src=./iconos/imagenfichero.jpg /></a>
+        <label class="nuevo_foto_persona">Nueva Foto Persona</label>
+        <input type='file' id='nuevo_foto_persona' name='nuevo_foto_persona'></input>
         <div id="div_error_foto_persona" class="errorcampo"><a id="error_foto_persona"></a></div>
         <br>
+
+        <select id='area' name='area'>
+        </select>
+
         <input type="submit" id='id_submit' value="" />
         
         `;
+
+        //obtener campos del formulario
+        let campos = document.forms['IU_form'].elements;
+        //recorrer todos los campos
+        for (let i=0;i<campos.length;i++) {
+            if (eval(document.getElementById('div_error_'+campos[i].id))){
+                document.getElementById('div_error_'+campos[i].id).style.display = 'none';
+            }
+        }
 
        
     }
