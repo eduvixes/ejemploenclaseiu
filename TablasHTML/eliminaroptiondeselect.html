@@ -1,0 +1,34 @@
+<html>
+
+    <head>
+
+    </head>
+    <body>
+        <select id="select_opciones" name="select_opciones">
+            <option value="">--</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+        <button onclick="eliminarvacios()">eliminar vacios</button>
+
+        <br>
+        <br>
+
+        <script type="text/javascript">
+
+        function eliminarvacios(){
+            let elementoselect = document.getElementById("select_opciones");
+            for (let i=0;i<elementoselect.length;i++){
+                if (elementoselect[i].value == ''){
+                    elementoselect[i].remove();
+                }
+            }
+        }
+
+        </script>    
+    
+</body>
+
+</html>
