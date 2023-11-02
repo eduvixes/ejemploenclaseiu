@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon" />
+	<title></title>
+
+	<link rel="stylesheet" href="./css/menu.css">
+
+	<script type="text/javascript" src="./locales/Textos_ES.js"></script>
+	<script type="text/javascript" src="./js_core/DOM_class.js"></script>
+	<script type="text/javascript" src="./locales/idiomas.js"></script>
+	<script type="text/javascript" src="./js_base/Gestion_Entidad.js"></script>
+	<script type="text/javascript" src="./js_base/Validaciones_Atomicas.js"></script>
+	
+	<!-- incluir aqui los ficheros con las clases de gestion de entidad    -->
+	<script type="text/javascript" src="./js_app/Gestion_personas.js"></script>
+
+	<script type="text/javascript" src="./js_test/test.js"></script>
+	<!--	incluir aqui los tres ficheros para test 	-->
+	<script type="text/javascript" src="./js_test/ET2_JavierRodeiroIglesias_tests.js"></script>
+	<script type="text/javascript" src="./js_test/ET2_JavierRodeiroIglesias_pruebas.js"></script>
+	<!--												-->
+
+	<!-- este es el script que carga las librerias ajax que usamos para acceder al back -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body onload="DOM_class.inicializa_pagina();Gestion_personas.SEARCH();">
+
+	<div id="div_titulo_pagina" class="formato_titulo_pagina">
+		<p id="id_texto_titulo_tabla">xxxxxxxxxxxxxxx</p>
+	</div>
+
+	<div>
+		<p>
+			<img src="./iconos/TEST.png" onclick="test();" /><img src="./iconos/BACK.png" onclick="window.location.href = 'menu.html';" />
+		</p>
+	</div>
+	
+	<div class = "div_mensajes_accion" id="div_mensajes_pagina" class="formato_mensajes_pagina">
+		<div class = "contenidomensajes_accion" >
+			#<spam class = "texto_mensaje" id="texto_mensaje"></spam>#
+			<p onclick="DOM_class.cerrar_div_mensajes();">Cerrar</p>
+		</div>
+	</div>
+
+	<div id="id_tabla_datos">
+        
+    </div>
+	
+	<div class = "div_IU_form" id='div_IU_form'>
+		<div class = "contenidoForm" id="contenidoForm">
+			<div class = "class_titulo_form">
+				<spam class = "class_contenido_titulo_form" >titulo para el formulario de este tamano</spam>
+			</div>
+			<form id='IU_form' name='IU_form' method='POST' enctype="multipart/form-data" class="formulario">
+				
+			</form>
+			<br>
+			<img src="./iconos/BACK.png" onclick="DOM_class.cerrar_div_formulario();" />
+		</div>
+	
+	</div>
+
+	<div class = "div_IU_form" id='div_IU_test'>
+		<div class = "contenidoForm" id="contenidoForm">
+			<table border="1" style="width: 100%;table-layout: fixed;">
+				<thead>
+					<tr>
+						<th style="width: 10%;word-wrap: break-word;">Entidad</th>
+						<th style="width: 20%;word-wrap: break-word;">Test</th>
+						<th style="width: 10%;word-wrap: break-word;">Atributo</th>
+						<th style="width: 30%;word-wrap: break-word;">Valor</th>
+						<th style="width: 10%;word-wrap: break-word;">Esperado</th>
+						<th style="width: 10%;word-wrap: break-word;">Obtenido</th>
+						<th style="width: 10%;word-wrap: break-word;">Resultado</th>
+					</tr>
+				</thead>
+				<tbody id="tablaresultadostest">
+				</tbody>
+
+			</table>
+			<img src="./iconos/BACK.png" onclick="DOM_class.cerrar_div_test();" />
+		</div>
+	
+	</div>
+
+
+
+</body>
+</html>

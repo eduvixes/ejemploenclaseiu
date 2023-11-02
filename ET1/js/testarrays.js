@@ -10,7 +10,7 @@ var directorio;
 
 function evaluarficherosAlumnos(){
 
-    directorio = 'ET1/Directorios/';
+    directorio = 'ET1/';
 
     let listaalumnos = "./ET1/ficheroalumnos.js";
         
@@ -80,7 +80,7 @@ function tratardefiniciontests(alumno){
     let ficherodefiniciontestsalumno = directorio+'ET1_'+alumno+'/ET1_'+alumno+'_tests.js';
     //let ficherodefiniciontestsalumno = 'ET1_'+alumno+'_tests.js';
         
-    let general = $('#cargaalumnos').load(ficherodefiniciontestsalumno, function () {
+    let general = $('#cargaalumnos').load(ficherodefiniciontestsalumno, function (){
         testdef(eval('def_test_'+alumno));
     });
 
@@ -90,7 +90,7 @@ function tratarpruebastests(alumno){
     
     let ficherodefinicionpruebassalumno = directorio+'ET1_'+alumno+'/ET1_'+alumno+'_pruebas.js';
         
-    let general = $('#cargaalumnos').load(ficherodefinicionpruebassalumno, function () {
+    let general = $('#cargaalumnos').load(ficherodefinicionpruebassalumno, function (){
         probedef(eval('pruebasunitarias_'+alumno));
     });
 
@@ -100,7 +100,7 @@ function comprobarpruebastests(alumno){
     
     let ficherodefinicionpruebassalumno = directorio+'ET1_'+alumno+'/ET1_'+alumno+'_pruebas.js';
         
-    let general = $('#cargaalumnos').load(ficherodefinicionpruebassalumno, function () {
+    let general = $('#cargaalumnos').load(ficherodefinicionpruebassalumno, function (){
         probeintest(eval('pruebasunitarias_'+alumno));
     });
 
