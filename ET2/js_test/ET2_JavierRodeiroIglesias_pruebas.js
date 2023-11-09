@@ -5,5 +5,5 @@ var pruebasunitarias = Array(
     Array('2','personas','nombre_persona','4','aa'.repeat(100),false),
     Array('2','personas','nombre_persona','5','aaaaaaa',true),
     Array('2','personas','nombre_persona','6','aa'.repeat(100),true),
-    Array('2','publicacion','nombre_persona','7','aa'.repeat(100),true),
+    Array('2','publicacion','nombre_publicacion','7','aa'.repeat(100),true),
 );

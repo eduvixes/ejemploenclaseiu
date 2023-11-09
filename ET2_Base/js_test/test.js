@@ -1,6 +1,7 @@
 
 function test(){
     document.getElementById('div_IU_test').style.display = 'block';
+    document.getElementById('tablaresultadostest').innerHTML = '';
     pruebasunitarias.forEach(element => {
             probar(element);
     });
@@ -18,6 +19,12 @@ function devolverdeftest(numdeftest){
 
 function probar(prueba){
     let resulttest;
+    if (!eval(document.getElementById(prueba[2]))){
+        let nuevoelemento = document.createElement('input');
+        nuevoelemento.id = prueba[2];
+        document.body.append(nuevoelemento);
+        nuevoelemento.style.display = 'none';
+    }
     document.getElementById(prueba[2]).value = prueba[4];
     let funcion = 'Gestion_'+prueba[1]+'.comprobar_'+prueba[2]+'()';
     let resultado = eval(funcion);
@@ -35,4 +42,3 @@ function probar(prueba){
     document.getElementById('tablaresultadostest').innerHTML += salida;
     
 }
-
