@@ -68,13 +68,9 @@ class GestionEntidad {
             for (let i=0;i<this.datosfilas.length;i++){
         
                 textolineadatos += '<tr style="background-color:grey;">';
-        
-                //bucle recorra todos los atributos y construya string para pasar como argumento a las funciones de formularios
-                let datosfuncion = '';
+    
         
                 for (let clave in this.datosfilas[i]){
-        
-                    datosfuncion += "'"+this.datosfilas[i][clave]+"',";
         
                     if (this.columnasamostrar.includes(clave)){
         
@@ -83,13 +79,11 @@ class GestionEntidad {
                     }
                 }
         
-                datosfuncion = datosfuncion.substring(0, datosfuncion.length - 1);
-        
                 // crear los td para cada boton de llamada a funcion de formulario de accion (EDIT, DELETE O SHOWCURRENT)
         
-                let lineaedit = this.crearboton('EDIT', datosfuncion);
-                let lineadelete = this.crearboton('DELETE', datosfuncion);
-                let lineashowcurrent = this.crearboton('SHOWCURRENT', datosfuncion);
+                let lineaedit = this.crearboton('EDIT', JSON.stringify(this.datosfilas[i]));
+                let lineadelete = this.crearboton('DELETE', JSON.stringify(this.datosfilas[i]));
+                let lineashowcurrent = this.crearboton('SHOWCURRENT', JSON.stringify(this.datosfilas[i]));
         
                 textolineadatos += lineaedit+lineadelete+lineashowcurrent;
         
@@ -167,45 +161,7 @@ class GestionEntidad {
         alert('falta create form SHOWCURRENT entidad heredada');
     }
 
-    static resetearForm(){
-
-        //obtener campos del formulario
-        let campos = document.forms['IU_form'].elements;
-        //recorrer todos los campos
-        for (let i=0;i<campos.length;i++) {
-            //poner a vacio cada campo
-            //-------------------------
-            campos[i].value = '';
-            
-            //quitar los eventos de cada campo
-            //obtener los atributos del campo
-            let atributos = campos[i].getAttributeNames;
-            //definir los eventos a quitar
-            let eventos = Array('onblur','onclick','onchange','readonly');
-            for(let atributo in atributos){
-                if (atributo in eventos){
-                    //si el evento existe como atributo eliminarlo
-                    //---------------------------------------------
-                    campos[i].removeAttribute(atributo);
-                }
-            }
-
-        // poner todos los campos y labels visibles
-            if (eval(document.getElementById(campos[i].id))){ // si existe el elemento por su id
-                //document.getElementById(campos[i].id).style.display = 'block';
-            }
-            if (eval(document.querySelector("."+campos[i].id))){ // si existe el elemento por su class
-               //document.querySelector("."+campos[i].id).style.display = 'block';
-            }
-
-        // poner todos los campos de div de error a none
-            if (eval(document.getElementById('div_error_'+campos[i].id))){
-                document.getElementById('div_error_'+campos[i].id).style.display = 'none';
-            }
-
-        };
-    }
-
+    
     static ponercamposreadonly(){
         //obtener campos del formulario
         let campos = document.forms['IU_form'].elements;

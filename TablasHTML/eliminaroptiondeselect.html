@@ -4,29 +4,35 @@
 
     </head>
     <body>
-        <select id="select_opciones" name="select_opciones">
+        <select id="opciones" name="opciones">
             <option value="">--</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
         </select>
 
-        <button onclick="eliminarvacios()">eliminar vacios</button>
+        <input type = 'radio' id="select_opciones" name="select_opciones" value="--" class = 'select_opciones_--'>--</input>
+        <input type = 'radio' id="select_opciones" name="select_opciones" value="1" class = 'select_opciones_1'>1</input>
+        <input type = 'radio' id="select_opciones" name="select_opciones" value="2" class = 'select_opciones_2'>2</input>
+        <input type = 'radio' id="select_opciones" name="select_opciones" value="3" class = 'select_opciones_3'>3</input>
+        <br>
 
+        dime valor : <input type="text" id="dimevalor" />
+        <br>
+        <button onclick="ponerselected('opciones',document.getElementById('dimevalor').value)">poner seleccionado el del input en el select</button>
+        <br>
+        <button onclick="ponerselectedradio(document.getElementById('dimevalor').value)">poner seleccionado el del input en el radio</button>
         <br>
         <br>
 
         <script type="text/javascript">
 
-        function eliminarvacios(){
-            let elementoselect = document.getElementById("select_opciones");
-            for (let i=0;i<elementoselect.length;i++){
-                if (elementoselect[i].value == ''){
-                    elementoselect[i].remove();
-                }
-            }
+        function ponerselected(id,novovalor){
+            document.querySelector("#"+id+" [value = '"+novovalor+"'").setAttribute('selected',true)
         }
-
+        function ponerselectedradio(novovalor){
+            document.querySelector(".select_opciones_"+novovalor).setAttribute('checked',true)
+        }
         </script>    
     
 </body>

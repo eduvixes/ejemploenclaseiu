@@ -1,12 +1,6 @@
 class Gestion_personas extends GestionEntidad{
 
-    // se puede hacer uno general en GestionEntidad que recorra todos los atributos haciendo estas cosas
-    static resetearformpersona() {
-
-        GestionEntidad.resetearForm();
     
-    }
-
     //-----------------------------------------------------------------------------
     // formularios
 
@@ -62,11 +56,11 @@ class Gestion_personas extends GestionEntidad{
 
     }
 
-    static createForm_EDIT(dni, nombre_persona, apellidos_persona, fechaNacimiento_persona, direccion_persona, telefono_persona, email_persona, foto_persona){
+    static createForm_EDIT(datostupla){
         
         // resetear el formulario
         this.recargarform();
-        
+
         // rellenar titulo formulario
         document.querySelector(".class_contenido_titulo_form").className = "class_contenido_titulo_form titulo_form_EDIT_persona"; 
 
@@ -76,29 +70,29 @@ class Gestion_personas extends GestionEntidad{
 
         // se coloca el onblur del dni y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
         document.getElementById('dni').setAttribute('onblur', 'Gestion_personas.comprobar_dni()');
-        document.getElementById('dni').value = dni;
+        document.getElementById('dni').value = datostupla.dni;
         document.getElementById('dni').setAttribute("readonly","");
 
         // se coloca el onblur del nombre y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
         document.getElementById('nombre_persona').setAttribute('onblur', 'Gestion_personas.comprobar_nombre_persona()');
-        document.getElementById('nombre_persona').value = nombre_persona;
+        document.getElementById('nombre_persona').value = datostupla.nombre_persona;
 
         document.getElementById('apellidos_persona').setAttribute('onblur', 'Gestion_personas.comprobar_apellidos_persona()');
-        document.getElementById('apellidos_persona').value = apellidos_persona;
+        document.getElementById('apellidos_persona').value = datostupla.apellidos_persona;
 
         document.getElementById('fechaNacimiento_persona').setAttribute('onchange','Gestion_personas.comprobar_fechaNacimiento_persona()');
-        document.getElementById('fechaNacimiento_persona').value = fechaNacimiento_persona;
+        document.getElementById('fechaNacimiento_persona').value = datostupla.fechaNacimiento_persona;
 
         document.getElementById('direccion_persona').setAttribute('onblur','Gestion_personas.comprobar_direccion_persona()');
-        document.getElementById('direccion_persona').value = direccion_persona;
+        document.getElementById('direccion_persona').value = datostupla.direccion_persona;
 
         document.getElementById('telefono_persona').setAttribute('onblur','Gestion_personas.comprobar_telefono_persona()');
-        document.getElementById('telefono_persona').value = telefono_persona;
+        document.getElementById('telefono_persona').value = datostupla.telefono_persona;
 
         document.getElementById('email_persona').setAttribute('onblur','Gestion_personas.comprobar_email_persona()');
-        document.getElementById('email_persona').value = email_persona;
+        document.getElementById('email_persona').value = datostupla.email_persona;
 
-        document.getElementById('foto_persona').value = foto_persona;
+        document.getElementById('foto_persona').value = datostupla.foto_persona;
         document.getElementById('link_foto_persona').setAttribute('href','http://193.147.87.202/ET2/filesuploaded/files_foto_persona/'+foto_persona);
         document.getElementById('foto_persona').setAttribute("readonly",true);
 
@@ -118,7 +112,7 @@ class Gestion_personas extends GestionEntidad{
         document.getElementById('div_IU_form').style.display = 'block';
     }
 
-    static createForm_DELETE(dni, nombre_persona, apellidos_persona, fechaNacimiento_persona, direccion_persona, telefono_persona, email_persona, foto_persona){
+    static createForm_DELETE(datostupla){
         
         // resetear el formulario
         this.recargarform();
@@ -130,24 +124,31 @@ class Gestion_personas extends GestionEntidad{
         document.getElementById('IU_form').action = 'javascript:Gestion_personas.DELETE();';
 
         // se coloca el onblur del dni y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
-        document.getElementById('dni').value = dni;
+        document.getElementById('dni').value = datostupla.dni;
+        document.getElementById('dni').setAttribute('readonly',true);
 
         // se coloca el onblur del nombre y se pone a vacio el valor (o podriamos hacerlo en el resetearformusuario())
-        document.getElementById('nombre_persona').value = nombre_persona;
+        document.getElementById('nombre_persona').value = datostupla.nombre_persona;
+        document.getElementById('nombre_persona').setAttribute('readonly',true);
 
-        document.getElementById('apellidos_persona').value = apellidos_persona;
+        document.getElementById('apellidos_persona').value = datostupla.apellidos_persona;
+        document.getElementById('apellidos_persona').setAttribute('readonly',true);
 
-        document.getElementById('fechaNacimiento_persona').value = fechaNacimiento_persona;
+        document.getElementById('fechaNacimiento_persona').value = datostupla.fechaNacimiento_persona;
+        document.getElementById('fechaNacimiento_persona').setAttribute('readonly',true);
 
-        document.getElementById('direccion_persona').value = direccion_persona;
+        document.getElementById('direccion_persona').value = datostupla.direccion_persona;
+        document.getElementById('direccion_persona').setAttribute('readonly',true);
 
-        document.getElementById('telefono_persona').value = telefono_persona;
+        document.getElementById('telefono_persona').value = datostupla.telefono_persona;
+        document.getElementById('telefono_persona').setAttribute('readonly',true);
 
-        document.getElementById('email_persona').value = email_persona;
+        document.getElementById('email_persona').value = datostupla.email_persona;
+        document.getElementById('email_persona').setAttribute('readonly',true);
 
-        document.getElementById('foto_persona').value = foto_persona;
+        document.getElementById('foto_persona').value = datostupla.foto_persona;
         document.getElementById('foto_persona').setAttribute("readonly",true);
-        document.getElementById("link_foto_persona").href += foto_persona;
+        document.getElementById("link_foto_persona").href += datostupla.foto_persona;
 
         document.getElementById("label_nuevo_foto_persona").style.display = 'none';
         document.getElementById("nuevo_foto_persona").style.display = 'none';
@@ -168,10 +169,10 @@ class Gestion_personas extends GestionEntidad{
         document.getElementById('div_IU_form').style.display = 'block';
     }
 
-    static createForm_SHOWCURRENT(dni, nombre_persona, apellidos_persona, fechaNacimiento_persona, direccion_persona, telefono_persona, email_persona, foto_persona){
+    static createForm_SHOWCURRENT(datostupla){
         
         // reutilizo la creación del delete porque me implica pocas modificaciones
-        this.createForm_DELETE(dni, nombre_persona, apellidos_persona, fechaNacimiento_persona, direccion_persona, telefono_persona, email_persona, foto_persona);
+        this.createForm_DELETE(datostupla);
         
         // rellenar titulo del formulario
         document.querySelector(".class_contenido_titulo_form").className = "class_contenido_titulo_form titulo_form_SHOWCURRENT_persona";
@@ -316,7 +317,7 @@ class Gestion_personas extends GestionEntidad{
         await this.peticionBackGeneral('IU_form', 'persona', 'EDIT')
         .then((respuesta) => {
             if (respuesta['ok']){
-                this.resetearformpersona();
+                this.recargarform();
                 this.SEARCH();
             }
             else{
@@ -329,7 +330,7 @@ class Gestion_personas extends GestionEntidad{
         await this.peticionBackGeneral('IU_form', 'persona', 'DELETE')
         .then((respuesta) => {
             if (respuesta['ok']){
-                this.resetearformpersona();
+                this.recargarform();
                 this.SEARCH();
             }
             else{
@@ -564,7 +565,8 @@ class Gestion_personas extends GestionEntidad{
         
         <br>
         <label class="label_direccion_persona">Dirección Postal</label>
-        <input type='text' id='direccion_persona' name='direccion_persona'></input>
+        <!--<input type='text' id='direccion_persona' name='direccion_persona'></input>-->
+        <textarea rows="5" cols="33" type='text' id='direccion_persona' name='direccion_persona'></textarea>
         <div id="div_error_direccion_persona" class="errorcampo"><a id="error_direccion_persona"></a></div>
         <br>
 

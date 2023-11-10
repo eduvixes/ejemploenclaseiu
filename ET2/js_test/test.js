@@ -10,7 +10,7 @@ function test(){
 function devolverdeftest(numdeftest){
 
     for (let i=0;i<def_test.length;i++){
-        if (def_test[i][0] == numdeftest){
+        if (def_test[i][2] == numdeftest){
             return def_test[i];
         }
     }
