@@ -30,7 +30,7 @@ function probar(prueba){
     let resultado = eval(funcion);
     let salida = '<tr>';
     let respuesta = devolverdeftest(prueba[0]);
-    let descripcion = respuesta[2];
+    let descripcion = respuesta[3];
     if (resultado == prueba[5]){
         resulttest = '<td style="background-color:green;">CORRECTO</td>';
     }
