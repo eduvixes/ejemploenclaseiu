@@ -2,10 +2,18 @@
 
     <head>
 
+        <style type="text/css">
+            option {
+                font-size:small !important;
+            }
+        </style>
+        <script src="tcal.js"></script>
+        <link rel="stylesheet" href="tcal.css">
+
     </head>
     <body>
         <select id="opciones" name="opciones">
-            <option value="">--</option>
+            <option value="" style="font-size: large;">--</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -15,15 +23,27 @@
         <input type = 'radio' id="select_opciones" name="select_opciones" value="1" class = 'select_opciones_1'>1</input>
         <input type = 'radio' id="select_opciones" name="select_opciones" value="2" class = 'select_opciones_2'>2</input>
         <input type = 'radio' id="select_opciones" name="select_opciones" value="3" class = 'select_opciones_3'>3</input>
+
+        
+        <input type = 'checkbox' id="check_opciones" name="check_opciones" value="--" class = 'check_opciones_--'>--</input>
+        <input type = 'checkbox' id="check_opciones" name="check_opciones" value="1" class = 'check_opciones_1'>1</input>
+        <input type = 'checkbox' id="check_opciones" name="check_opciones" value="2" class = 'check_opciones_2'>2</input>
+        <input type = 'checkbox' id="check_opciones" name="check_opciones" value="3" class = 'check_opciones_3'>3</input>
         <br>
 
-        dime valor : <input type="text" id="dimevalor" />
+        dime valor : <input type="text" id="dimevalor"  />
         <br>
         <button onclick="ponerselected('opciones',document.getElementById('dimevalor').value)">poner seleccionado el del input en el select</button>
         <br>
         <button onclick="ponerselectedradio(document.getElementById('dimevalor').value)">poner seleccionado el del input en el radio</button>
         <br>
+        <button onclick="ponerselectedcheck(document.getElementById('dimevalor').value)">poner seleccionado el del input en el check</button>
         <br>
+        <br>
+
+        <button onclick="ponervalordate('fecha','14/12/2023')">poner valor en el date</button>
+        <input type="text" name="fecha" id="fecha" class="tcal" readonly  />
+       
 
         <script type="text/javascript">
 
@@ -32,6 +52,16 @@
         }
         function ponerselectedradio(novovalor){
             document.querySelector(".select_opciones_"+novovalor).setAttribute('checked',true)
+        }
+        function ponerselectedcheck(novovalor){
+            document.querySelector(".check_opciones_"+novovalor).setAttribute('checked',true)
+        }
+
+        function ponervalordate(id, valor){
+           // let elementofecha = valor.split('/');
+           // let fechaprocesada = elementofecha[2]+'-'+elementofecha[1]+'-'+elementofecha[0];
+           // fechaprocesada = new Date(fechaprocesada);
+            document.getElementById(id).value = valor;
         }
         </script>    
     
